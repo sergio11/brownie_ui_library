@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">My Application</string>
-
 
     <string name="hours_minutes_seconds_format" formatted="false">%02dH:%02dM:%02dS</string>
     <string name="datetime_format">yyyy-MM-dd HH:mm:ss.SSS</string>
+
+    <!-- Dialogs Strings -->
+    <string name="default_notice_dialog_title">Notice Dialog</string>
+
+    <string name="empty_text">-</string>
 
 </resources>
