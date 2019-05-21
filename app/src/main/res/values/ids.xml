@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item type="id" name="swipeRefreshLayout" />
+    <item type="id" name="recyclerView" />
+    <item type="id" name="itemBackground" />
+    <item type="id" name="itemForeground" />
+
+</resources>

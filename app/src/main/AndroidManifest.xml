@@ -3,5 +3,6 @@
 
     <application android:allowBackup="true"
                  android:supportsRtl="true"
+                 android:name=".BrownieApp"
                  android:theme="@style/AppTheme"/>
 </manifest>

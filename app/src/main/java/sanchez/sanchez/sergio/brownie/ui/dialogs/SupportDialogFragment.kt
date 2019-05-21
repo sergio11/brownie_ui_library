@@ -58,16 +58,17 @@ abstract class SupportDialogFragment: DialogFragment() {
      * On Resume
      */
     override fun onResume() {
-        // Store access variables for window and blank point
-        val window = dialog.window
-        val size = Point()
-        // Store dimensions of the screen in `size`
-        val display = window!!.windowManager.defaultDisplay
-        display.getSize(size)
-        // Set the width of the dialog proportional to 75% of the screen width
-        window.setLayout((size.x * 0.90).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
-        window.setGravity(Gravity.CENTER)
-        // Call super onResume after sizing
+
+        dialog?.window?.let {
+            val size = Point()
+            // Store dimensions of the screen in `size`
+            val display = it.windowManager.defaultDisplay
+            display.getSize(size)
+            // Set the width of the dialog proportional to 75% of the screen width
+            it.setLayout((size.x * 0.90).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
+            it.setGravity(Gravity.CENTER)
+
+        }
         super.onResume()
     }
 

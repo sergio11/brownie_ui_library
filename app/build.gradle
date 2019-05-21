@@ -7,7 +7,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 2
+        versionCode 3
         versionName "0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,10 +26,19 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation "com.karumi:dexter:$dexter_version"
     implementation "com.fernandocejas:arrow:$arrow_version"
-    implementation "uk.co.chrisjenx:calligraphy:${calligraphy_version}"
+
+    // Calligraphy
+    implementation "io.github.inflationx:calligraphy3:$calligraphy_version"
+    implementation "io.github.inflationx:viewpump:$viewpump_version"
+
+    // Preferences
+    implementation "androidx.preference:preference:$androidx_preferences"
+    implementation "androidx.preference:preference-ktx:$androidx_preferences"
 
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'androidx.navigation:navigation-runtime:2.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
 }

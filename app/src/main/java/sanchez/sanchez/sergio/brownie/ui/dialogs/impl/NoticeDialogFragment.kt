@@ -51,8 +51,8 @@ open class NoticeDialogFragment: SupportDialogFragment() {
     /**
      * Show
      */
-    override fun show(manager: FragmentManager?, tag: String?) {
-        if (manager?.isDestroyed == false && !manager.isStateSaved) {
+    override fun show(manager: FragmentManager, tag: String?) {
+        if (!manager.isDestroyed && !manager.isStateSaved) {
             super.show(manager, tag)
         }
     }
