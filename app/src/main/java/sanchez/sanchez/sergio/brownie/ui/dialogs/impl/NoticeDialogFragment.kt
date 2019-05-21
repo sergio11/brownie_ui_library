@@ -89,15 +89,16 @@ open class NoticeDialogFragment: SupportDialogFragment() {
          */
         @JvmStatic
         fun showDialog(activity: AppCompatActivity,
-                       title: String, noticeDialogListener: NoticeDialogListener?): NoticeDialogFragment {
+                       title: String, noticeDialogListener: NoticeDialogListener? = null): NoticeDialogFragment {
 
-            val noticeDialog = NoticeDialogFragment()
-            noticeDialog.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.CommonDialogFragmentTheme)
-            // Config Arguments
-            val args = Bundle()
-            args.putString(TITLE_ARG, title)
-            noticeDialog.arguments = args
-            noticeDialog.isCancelable = false
+            val noticeDialog = NoticeDialogFragment().apply {
+                setStyle(STYLE_NO_TITLE, R.style.CommonDialogFragmentTheme)
+                arguments = Bundle().apply {
+                    putString(TITLE_ARG, title)
+                }
+                isCancelable = false
+            }
+
             // Config Listener
             if (noticeDialogListener != null)
                 noticeDialog.setNoticeDialogListener(noticeDialogListener)
@@ -106,20 +107,6 @@ open class NoticeDialogFragment: SupportDialogFragment() {
 
             return noticeDialog
         }
-
-        /**
-         * Show Dialog
-         * @param activity
-         * @param title
-         * @return
-         */
-        @JvmStatic
-        fun showDialog(activity: AppCompatActivity, title: String): NoticeDialogFragment {
-            return showDialog(activity, title, null)
-        }
-
-
-
     }
 
 }
