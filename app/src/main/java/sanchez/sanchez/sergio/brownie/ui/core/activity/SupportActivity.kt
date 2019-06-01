@@ -20,6 +20,8 @@ abstract class SupportActivity: AppCompatActivity() {
      * @param savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Inject Dependencies
+        onInject()
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
         onSetupNavigation(navController(navHostId()))
@@ -42,6 +44,12 @@ abstract class SupportActivity: AppCompatActivity() {
      * On Setup Navigation
      */
     open fun onSetupNavigation(navController: NavController?){}
+
+    /**
+     * If you want to inject Dependency Injection
+     * on your activity, you can override this.
+     */
+    open fun onInject() {}
 
 
     /**

@@ -11,11 +11,12 @@ import sanchez.sanchez.sergio.brownie.extension.bindView
 import sanchez.sanchez.sergio.brownie.ui.core.adapter.SupportItemTouchHelper
 import sanchez.sanchez.sergio.brownie.ui.core.adapter.SupportRecyclerViewAdapter
 import sanchez.sanchez.sergio.brownie.ui.core.adapter.decorator.ItemOffsetDecoration
+import sanchez.sanchez.sergio.brownie.ui.core.viewmodel.SupportViewModel
 
 /**
  * Support LCE Fragment
  */
-abstract class SupportLCEFragment<T, E>: SupportFragment<T>(),
+abstract class SupportLCEFragment<T, E, VM: SupportViewModel>(private val mViewModelClass: Class<VM>): SupportFragment<VM, T>(mViewModelClass),
     SwipeRefreshLayout.OnRefreshListener, SupportRecyclerViewAdapter.OnSupportRecyclerViewListener<E>,
     SupportItemTouchHelper.ItemTouchHelperListener{
 

@@ -1,12 +1,16 @@
 package sanchez.sanchez.sergio.brownie.ui.core.fragment
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -15,23 +19,58 @@ import sanchez.sanchez.sergio.brownie.extension.setupSnackbar
 import sanchez.sanchez.sergio.brownie.ui.core.navigation.NavigationCommand
 import sanchez.sanchez.sergio.brownie.ui.core.viewmodel.SupportViewModel
 import java.lang.ClassCastException
+import javax.inject.Inject
 
 /**
  * Support Fragment
  */
-abstract class SupportFragment<T>: Fragment() {
+abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelClass: Class<VM>): Fragment() {
+
+
+    /**
+     * Dependencies
+     * ==============
+     */
+
+    /**
+     * View Model Factory
+     */
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    /**
+     * Parent Activity
+     */
+    @Inject
+    lateinit var parentActivity: Activity
+
+    /**
+     * View Model
+     */
+    private lateinit var viewModel: VM
 
     /**
      * Listener
      */
     private var listener: T? = null
 
+
+    /**
+     * on Create
+     */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        onInject()
+        viewModel = getViewModel()
+    }
+
     /**
      * On Create View
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-        inflater.inflate(layoutId(), container, false)
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        init()
+        return inflater.inflate(layoutId(), container, false)
+    }
 
     /**
      * On Activity Created
@@ -65,13 +104,25 @@ abstract class SupportFragment<T>: Fragment() {
     /**
      * Layout Id
      */
+    @LayoutRes
     abstract fun layoutId(): Int
+
+    /**
+     * On Inject
+     */
+    open fun onInject() {}
+
+    /**
+     * Init
+     */
+    open fun init() {}
 
 
     /**
      * Get View Model
      */
-    abstract fun getViewModel(): SupportViewModel
+     private fun getViewModel(): VM = ViewModelProviders.of(this, viewModelFactory)
+        .get(mViewModelClass)
 
 
     /**
