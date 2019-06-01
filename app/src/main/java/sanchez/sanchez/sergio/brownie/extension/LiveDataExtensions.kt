@@ -8,6 +8,8 @@ import sanchez.sanchez.sergio.brownie.models.ResourceState
  * LiveData Extensions
  * ====================
  * -> setSuccess
+ * -> setLoading
+ * -> setError
  */
 
 
