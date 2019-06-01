@@ -25,14 +25,22 @@ private const val DEFAULT_NOTIFICATION_ID = 1000
  **/
 class NotificationHelperImpl constructor(private val context: Context): INotificationHelper {
 
+    /**
+     * Notification Channels
+     */
     enum class NotificationChannels {
         SILENT_CHANNEL, COMMON_CHANNEL, IMPORTANT_CHANNEL
     }
 
 
-    // Get default ringtone
+    /**
+     * Default ringtone
+     */
     private val alertSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
+    /**
+     * Create notification channel if needed
+     */
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             for (notificationChannels in NotificationChannels.values())
