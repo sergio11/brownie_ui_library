@@ -7,7 +7,11 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.confirmation_dialog_layout.*
 import sanchez.sanchez.sergio.brownie.R
+import sanchez.sanchez.sergio.brownie.sounds.DIALOG_CONFIRM_SOUND
 import sanchez.sanchez.sergio.brownie.ui.dialogs.SupportDialogFragment
+import sanchez.sanchez.sergio.brownie.sounds.ISoundManager
+import javax.inject.Inject
+
 
 /**
  Confirmation Dialog Fragment
@@ -16,6 +20,14 @@ open class ConfirmationDialogFragment: SupportDialogFragment() {
 
 
     private var confirmationDialogListener: ConfirmationDialogListener? = null
+
+    /**
+     * Dependencies
+     * ==============
+     */
+
+    @Inject
+    protected lateinit var soundManager: ISoundManager
 
     /**
      * Set Confirmation Dialog Listener
@@ -42,6 +54,8 @@ open class ConfirmationDialogFragment: SupportDialogFragment() {
             confirmationDialogListener?.onRejected(this)
             dismiss()
         }
+
+        soundManager.playSound(DIALOG_CONFIRM_SOUND)
     }
 
     /**

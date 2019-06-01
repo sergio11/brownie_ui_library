@@ -4,11 +4,22 @@ import android.app.Application
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
+import sanchez.sanchez.sergio.brownie.di.components.ApplicationComponent
 
 /**
  Brownie App
  **/
-class BrownieApp: Application() {
+abstract class BrownieApp: Application() {
+
+    companion object {
+
+        @JvmStatic
+        lateinit var instance: BrownieApp
+
+        @JvmStatic
+        lateinit var applicationComponent: ApplicationComponent
+
+    }
 
     /**
      * On Create
@@ -26,21 +37,31 @@ class BrownieApp: Application() {
                 )
                 .build())
 
+        instance = this
+
+        applicationComponent = onInitializeInjector()
+
         if (BuildConfig.DEBUG) {
             onDebugConfig()
         } else {
             onReleaseConfig()
         }
+
     }
 
     /**
      * On Debug Config
      */
-    private fun onDebugConfig() {}
+    open fun onDebugConfig() {}
 
     /**
      * On Release Config
      */
-    private fun onReleaseConfig(){}
+    open fun onReleaseConfig(){}
 
+
+    /**
+     * Initialize Injector
+     */
+    abstract fun onInitializeInjector(): ApplicationComponent
 }

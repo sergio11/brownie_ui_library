@@ -137,7 +137,7 @@ class PermissionManagerImpl constructor(private val activity: AppCompatActivity)
              */
             override fun onPermissionDenied(response: PermissionDeniedResponse) {
                 super.onPermissionDenied(response)
-                NoticeDialogFragment.showDialog(activity,
+                /*NoticeDialogFragment.showDialog(activity,
                     reasonText, object : NoticeDialogFragment.NoticeDialogListener {
                         /**
                          * On Accepted
@@ -146,7 +146,7 @@ class PermissionManagerImpl constructor(private val activity: AppCompatActivity)
                             checkPermissionListener?.onSinglePermissionRejected(permission)
 
                         }
-                    })
+                    })*/
 
             }
         }

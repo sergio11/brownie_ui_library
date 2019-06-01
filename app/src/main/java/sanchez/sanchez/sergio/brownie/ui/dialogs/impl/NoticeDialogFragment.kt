@@ -6,13 +6,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.notice_dialog_layout.*
+import sanchez.sanchez.sergio.brownie.BrownieApp
 import sanchez.sanchez.sergio.brownie.R
+import sanchez.sanchez.sergio.brownie.sounds.DIALOG_ERROR_SOUND
+import sanchez.sanchez.sergio.brownie.sounds.DIALOG_SUCCESS_SOUND
 import sanchez.sanchez.sergio.brownie.ui.dialogs.SupportDialogFragment
+import sanchez.sanchez.sergio.brownie.sounds.ISoundManager
+import javax.inject.Inject
+
 
 /**
  Notice Dialog Fragment
  **/
 open class NoticeDialogFragment: SupportDialogFragment() {
+
+    /**
+     * Dependencies
+     * ============
+     */
+
+    @Inject
+    protected lateinit var soundManager: ISoundManager
 
 
     private var noticeDialogListener: NoticeDialogListener? = null
@@ -32,7 +46,9 @@ open class NoticeDialogFragment: SupportDialogFragment() {
     /**
      * Initialize Injector
      */
-    override fun initializeInjector() {}
+    override fun initializeInjector() {
+        BrownieApp.applicationComponent.inject(this)
+    }
 
     /**
      * On View Created
@@ -46,6 +62,12 @@ open class NoticeDialogFragment: SupportDialogFragment() {
             noticeDialogListener?.onAccepted(this)
             dismiss()
         }
+
+        if(arguments != null && arguments!!.getBoolean(IS_SUCCESS_ARG))
+            soundManager.playSound(DIALOG_SUCCESS_SOUND)
+        else
+            soundManager.playSound(DIALOG_ERROR_SOUND)
+
     }
 
     /**
@@ -80,7 +102,9 @@ open class NoticeDialogFragment: SupportDialogFragment() {
         /**
          * Title Arg
          */
-        val TITLE_ARG = "DIALOG_TITLE"
+        const val TITLE_ARG = "DIALOG_TITLE"
+        const val IS_SUCCESS_ARG = "IS_SUCCESS_ARG"
+
 
         /**
          * Show Dialog
@@ -88,13 +112,17 @@ open class NoticeDialogFragment: SupportDialogFragment() {
          * @return
          */
         @JvmStatic
-        fun showDialog(activity: AppCompatActivity,
-                       title: String, noticeDialogListener: NoticeDialogListener? = null): NoticeDialogFragment {
+        fun showDialog(
+            activity: AppCompatActivity,
+            title: String, isSuccess: Boolean, noticeDialogListener: NoticeDialogListener? = null
+        ): NoticeDialogFragment {
+
 
             val noticeDialog = NoticeDialogFragment().apply {
                 setStyle(STYLE_NO_TITLE, R.style.CommonDialogFragmentTheme)
                 arguments = Bundle().apply {
                     putString(TITLE_ARG, title)
+                    putBoolean(IS_SUCCESS_ARG, isSuccess)
                 }
                 isCancelable = false
             }
@@ -107,6 +135,7 @@ open class NoticeDialogFragment: SupportDialogFragment() {
 
             return noticeDialog
         }
+
     }
 
 }

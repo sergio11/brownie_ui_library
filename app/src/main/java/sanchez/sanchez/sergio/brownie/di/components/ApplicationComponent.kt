@@ -6,7 +6,7 @@ import sanchez.sanchez.sergio.brownie.di.modules.ApplicationModule
 import javax.inject.Singleton
 import sanchez.sanchez.sergio.brownie.notification.INotificationHelper
 import sanchez.sanchez.sergio.brownie.sounds.ISoundManager
-
+import sanchez.sanchez.sergio.brownie.ui.dialogs.impl.NoticeDialogFragment
 
 
 /**
@@ -15,6 +15,11 @@ import sanchez.sanchez.sergio.brownie.sounds.ISoundManager
 @Singleton
 @Component(modules = [ ApplicationModule::class ])
 interface ApplicationComponent {
+
+    /**
+     * Inject into Notifice Dialog Fragment
+     */
+    fun inject(noticeDialogFragment: NoticeDialogFragment)
 
     //Exposed to sub-graphs.
     fun context(): Context

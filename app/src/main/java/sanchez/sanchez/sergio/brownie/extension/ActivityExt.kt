@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import sanchez.sanchez.sergio.brownie.ui.dialogs.impl.NoticeDialogFragment
+import sanchez.sanchez.sergio.brownie.ui.dialogs.impl.ConfirmationDialogFragment
+import sanchez.sanchez.sergio.brownie.ui.dialogs.impl.ProgressDialogFragment
+
 
 /**
  * Add Fragment
@@ -68,8 +71,7 @@ fun <ViewT : View> AppCompatActivity.bindView(@IdRes idRes: Int): Lazy<ViewT> {
  * @param noticeDialogListener
  */
 fun AppCompatActivity.showNoticeDialog(title: String, isSuccess: Boolean = true, noticeDialogListener: NoticeDialogFragment.NoticeDialogListener? = null) {
-    NoticeDialogFragment.showDialog(this, title, noticeDialogListener)
-
+    NoticeDialogFragment.showDialog(this, title, isSuccess,  noticeDialogListener)
 }
 
 /**
@@ -82,5 +84,47 @@ fun AppCompatActivity.showNoticeDialog(@StringRes stringResId: Int, isSuccess: B
     showNoticeDialog(getString(stringResId), isSuccess, noticeDialogListener)
 }
 
+
+/**
+ * Show Progress Dialog
+ * @param title
+ */
+fun AppCompatActivity.showProgressDialog(title: String) {
+    ProgressDialogFragment.showDialog(this, title)
+}
+
+/**
+ * Show Progress Dialog
+ * @param stringResId
+ */
+fun AppCompatActivity.showProgressDialog(@StringRes stringResId: Int) {
+    showProgressDialog(getString(stringResId))
+}
+
+/**
+ * Hide Progress Dialog
+ */
+fun AppCompatActivity.hideProgressDialog() {
+    ProgressDialogFragment.cancelCurrent()
+}
+
+/**
+ * Show Confirmation Dialog
+ * @param title
+ * @param confirmationDialogListener
+ */
+fun AppCompatActivity.showConfirmationDialog(title: String, confirmationDialogListener: ConfirmationDialogFragment.ConfirmationDialogListener? = null) {
+    ConfirmationDialogFragment.showDialog(this, title, confirmationDialogListener)
+}
+
+
+/**
+ * Show Confirmation Dialog
+ * @param stringResId
+ * @param confirmationDialogListener
+ */
+fun AppCompatActivity.showConfirmationDialog(@StringRes stringResId: Int, confirmationDialogListener: ConfirmationDialogFragment.ConfirmationDialogListener? = null) {
+    showConfirmationDialog(getString(stringResId))
+}
 
 
