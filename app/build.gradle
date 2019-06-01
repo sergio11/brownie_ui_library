@@ -8,7 +8,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 8
+        versionCode 12
         versionName "0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,12 +43,14 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-runtime:$navigation_version"
+    implementation "androidx.navigation:navigation-fragment:$navigation_version"
+    // LifeCycle Extensions
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
 
     // Test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation 'androidx.navigation:navigation-runtime:2.0.0'
-    implementation 'androidx.navigation:navigation-fragment:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
 }
