@@ -5,25 +5,13 @@ import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
 import sanchez.sanchez.sergio.brownie.di.components.ApplicationComponent
+import sanchez.sanchez.sergio.brownie.di.components.DaggerApplicationComponent
+import sanchez.sanchez.sergio.brownie.di.modules.ApplicationModule
 
-/**
- Brownie App
- **/
+
 abstract class BrownieApp: Application() {
 
-    companion object {
 
-        @JvmStatic
-        lateinit var instance: BrownieApp
-
-        @JvmStatic
-        lateinit var applicationComponent: ApplicationComponent
-
-    }
-
-    /**
-     * On Create
-     */
     override fun onCreate() {
         super.onCreate()
 
@@ -40,6 +28,7 @@ abstract class BrownieApp: Application() {
         instance = this
 
         applicationComponent = onInitializeInjector()
+
 
         if (BuildConfig.DEBUG) {
             onDebugConfig()
@@ -63,5 +52,19 @@ abstract class BrownieApp: Application() {
     /**
      * Initialize Injector
      */
-    abstract fun onInitializeInjector(): ApplicationComponent
+    private fun onInitializeInjector(): ApplicationComponent =
+        DaggerApplicationComponent.builder()
+            .applicationModule(ApplicationModule(this))
+            .build()
+
+
+    companion object {
+
+        @JvmStatic
+        lateinit var instance: BrownieApp
+
+        @JvmStatic
+        lateinit var applicationComponent: ApplicationComponent
+
+    }
 }

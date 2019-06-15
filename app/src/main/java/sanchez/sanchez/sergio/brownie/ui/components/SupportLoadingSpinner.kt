@@ -7,17 +7,11 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.widget.AppCompatImageView
 
-/**
-Support Loading Spinner
-
- **/
 class SupportLoadingSpinner: AppCompatImageView {
 
     private val ROTATE_ANIMATION_DURATION = 3600L
 
-    /**
-     * Animation
-     */
+
     private var animation: ObjectAnimator? = null
 
     constructor(context: Context): super(context)
@@ -29,9 +23,6 @@ class SupportLoadingSpinner: AppCompatImageView {
             super(context, attrs, defStyleAttr)
 
 
-    /**
-     * On Finish Inflate
-     */
     override fun onFinishInflate() {
         super.onFinishInflate()
         animation = ObjectAnimator.ofFloat(this, "rotationY", 0.0f, 360f).apply {
@@ -44,10 +35,6 @@ class SupportLoadingSpinner: AppCompatImageView {
     }
 
 
-    /**
-     * Set Visibility
-     * @param visibility
-     */
     override fun setVisibility(visibility: Int) {
         super.setVisibility(visibility)
 

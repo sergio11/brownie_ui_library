@@ -12,21 +12,12 @@ private const val MAX_STREAMS = 2
 private const val DEFAULT_SOUND = 1.0f
 
 
-/**
- Sound Pool Manager Impl
- **/
 class SoundPoolManagerImpl(
-    context: Context
+    private val context: Context
 ): ISoundManager {
 
-    /**
-     * Sound Pool
-     */
     private var soundPool: SoundPool
 
-    /**
-     * Sound Map
-     */
     private var soundMap: Map<Int, Int>
 
     init {
@@ -53,18 +44,8 @@ class SoundPoolManagerImpl(
     }
 
 
-
-    /**
-     * Play Sound
-     * @param sound
-     */
     override fun playSound(sound: Int): Int = playSound(sound, false)
 
-    /**
-     * Play Sound
-     * @parma sound
-     * @parma loop
-     */
     override fun playSound(sound: Int, loop: Boolean): Int {
         var streamId: Int = -1
         if(soundMap.isNotEmpty() && soundMap.containsKey(sound)) {
@@ -75,10 +56,6 @@ class SoundPoolManagerImpl(
         return streamId
     }
 
-    /**
-     * Stop Sound
-     * @param streamId
-     */
     override fun stopSound(streamId: Int) {
         if(streamId != -1)
             soundPool.stop(streamId)

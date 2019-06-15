@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 ext.dexter_version = '5.0.0'
@@ -19,7 +20,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 12
+        versionCode 13
         versionName "0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -60,7 +61,7 @@ dependencies {
     implementation "androidx.preference:preference-ktx:$androidx_preferences"
 
     // Dagger
-    annotationProcessor  "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt  "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger:$dagger_version"
 
     // Navigation

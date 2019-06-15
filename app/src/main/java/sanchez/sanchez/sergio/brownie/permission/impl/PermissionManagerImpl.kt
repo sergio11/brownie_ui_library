@@ -15,22 +15,14 @@ import sanchez.sanchez.sergio.brownie.permission.IPermissionManager
 import sanchez.sanchez.sergio.brownie.ui.dialogs.impl.NoticeDialogFragment
 import java.util.*
 
-/**
-Objetive of the document:
 
- **/
-class PermissionManagerImpl constructor(private val activity: AppCompatActivity):
-        IPermissionManager {
+class PermissionManagerImpl constructor(
+    private val activity: AppCompatActivity): IPermissionManager {
 
-    /** ATTRIBUTES **/
 
-    /**
-     * Check Permission Listener
-     */
     private var checkPermissionListener: IPermissionManager.OnCheckPermissionListener? = null
 
 
-    /** OVERRIDE METHOD **/
     override fun checkSinglePermission(permission: String, reasonText: String) {
         Preconditions.checkNotNull(permission, "Permission can not be null")
         Preconditions.checkNotNull(permission.isNotEmpty(), "Permission can not be empty")
@@ -49,10 +41,6 @@ class PermissionManagerImpl constructor(private val activity: AppCompatActivity)
         }
     }
 
-    /**
-     * Should Ask Permission
-     * @param permission
-     */
     override fun shouldAskPermission(permission: String): Boolean {
         if (shouldAskPermission() && appManifestContainsPermission(permission)) {
             val permissionResult = ActivityCompat.checkSelfPermission(activity, permission)
@@ -63,9 +51,6 @@ class PermissionManagerImpl constructor(private val activity: AppCompatActivity)
         return false
     }
 
-    /**
-     *
-     */
     override fun setCheckPermissionListener(checkPermissionListener: IPermissionManager.OnCheckPermissionListener) {
         this.checkPermissionListener = checkPermissionListener
     }
@@ -73,19 +58,10 @@ class PermissionManagerImpl constructor(private val activity: AppCompatActivity)
 
     /** PRIVATE METHOD **/
 
-    /**
-     * Should Ask Permission
-     * @return
-     */
     private fun shouldAskPermission(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
     }
 
-    /**
-     * Checks if the androidmanifest.xml contains the given permission.
-     * @param permission
-     * @return
-     */
     private fun appManifestContainsPermission(permission: String): Boolean {
 
         val pm = activity.packageManager
@@ -114,44 +90,26 @@ class PermissionManagerImpl constructor(private val activity: AppCompatActivity)
     }
 
 
-    /**
-     * Build Permission Listener
-     * @param permission
-     * @param reasonText
-     * @return
-     */
     private fun buildPermissionListener(permission: String, reasonText: String): PermissionListener {
 
         return object : BasePermissionListener() {
 
-            /**
-             * On Permission Granted
-             */
             override fun onPermissionGranted(response: PermissionGrantedResponse) {
                 super.onPermissionGranted(response)
                 checkPermissionListener?.onSinglePermissionGranted(permission)
             }
 
-            /**
-             * On Permission Denied
-             */
             override fun onPermissionDenied(response: PermissionDeniedResponse) {
                 super.onPermissionDenied(response)
-                /*NoticeDialogFragment.showDialog(activity,
-                    reasonText, object : NoticeDialogFragment.NoticeDialogListener {
-                        /**
-                         * On Accepted
-                         */
+                NoticeDialogFragment.showDialog(activity,
+                    reasonText, false, object : NoticeDialogFragment.NoticeDialogListener {
                         override fun onAccepted(dialog: DialogFragment) {
                             checkPermissionListener?.onSinglePermissionRejected(permission)
 
                         }
-                    })*/
+                    })
 
             }
         }
     }
-
-    /** COMPANION OBJETC, CONST ENUM, INNER CLASS **/
-
 }

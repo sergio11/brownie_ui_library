@@ -6,9 +6,6 @@ import androidx.annotation.AnimRes
 import sanchez.sanchez.sergio.brownie.R
 
 
-/**
- * Default Values
- */
 private const val DEFAULT_AMPLITUDE = 0.2
 private const val DEFAULT_FREQUENCY = 20.0
 private const val DEFAULT_FROM_SCALE_X = 1.0f
@@ -60,14 +57,6 @@ fun View.scaleDown(fromScaleX: Float = DEFAULT_TO_SCALE_X, fromScaleY: Float = D
     })
 }
 
-/**
- * Translate Animation
- * @param fromXDelta
- * @param fromYDelta
- * @param toXDelta
- * @param toYDelta
- * @param listener
- */
 fun View.translateAnimation(fromXDelta: Float, fromYDelta: Float,
                             toXDelta: Float, toYDelta: Float, animDuration: Long = DEFAULT_DURATION,
                             listener: Animation.AnimationListener? = null){
@@ -79,11 +68,6 @@ fun View.translateAnimation(fromXDelta: Float, fromYDelta: Float,
 }
 
 
-/**
- * Start Animation Helper
- * @param animRes
- * @param listener
- */
 fun View.startAnimation(@AnimRes animRes: Int, listener: Animation.AnimationListener? = null) {
     startAnimation(AnimationUtils.loadAnimation(context, animRes).apply {
         setAnimationListener(listener)
@@ -92,9 +76,6 @@ fun View.startAnimation(@AnimRes animRes: Int, listener: Animation.AnimationList
 }
 
 
-/**
- * Translate Animator
- */
 fun View.translateAnimator(
     toXDelta: Float,
     toYDelta: Float,
@@ -108,12 +89,6 @@ fun View.translateAnimator(
 }
 
 
-/**
- * Scale Animator
- * @param scaleX
- * @param scaleY
- * @param duration
- */
 fun View.scaleAnimator(
     scaleX: Float,
     scaleY: Float,

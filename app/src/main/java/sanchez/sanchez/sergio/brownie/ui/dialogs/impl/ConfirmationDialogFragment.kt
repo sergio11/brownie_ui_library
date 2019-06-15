@@ -13,43 +13,30 @@ import sanchez.sanchez.sergio.brownie.sounds.ISoundManager
 import javax.inject.Inject
 
 
-/**
- Confirmation Dialog Fragment
- **/
 open class ConfirmationDialogFragment: SupportDialogFragment() {
 
 
     private var confirmationDialogListener: ConfirmationDialogListener? = null
 
-    /**
-     * Dependencies
-     * ==============
-     */
 
     @Inject
     protected lateinit var soundManager: ISoundManager
 
-    /**
-     * Set Confirmation Dialog Listener
-     */
+
     fun setConfirmationDialogListener(confirmationDialogListener: ConfirmationDialogListener) {
         this.confirmationDialogListener = confirmationDialogListener
     }
 
-    /**
-     * On View Created
-     */
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Set Dialog Title Text View
+
         dialogTitle?.text = title
 
-        // Accept Click Listener
         accept.setOnClickListener {
             confirmationDialogListener?.onAccepted(this)
             dismiss()
         }
-        // Cancel Click Listener
         cancel.setOnClickListener {
             confirmationDialogListener?.onRejected(this)
             dismiss()
@@ -58,19 +45,11 @@ open class ConfirmationDialogFragment: SupportDialogFragment() {
         soundManager.playSound(DIALOG_CONFIRM_SOUND)
     }
 
-    /**
-     * Get Layout Resource
-     */
+
     override fun getLayoutRes(): Int = R.layout.confirmation_dialog_layout
 
-    /**
-     * Initialize Injector
-     */
     override fun initializeInjector() {}
 
-    /**
-     * Show
-     */
     override fun show(manager: FragmentManager, tag: String?) {
         if (!manager.isDestroyed && !manager.isStateSaved) {
             super.show(manager, tag)
@@ -78,58 +57,31 @@ open class ConfirmationDialogFragment: SupportDialogFragment() {
     }
 
 
-
-    /**
-     * Confirmation Dialog Listener
-     */
     interface ConfirmationDialogListener {
 
-        /**
-         * On Accepted
-         * @param dialog
-         */
         fun onAccepted(dialog: DialogFragment)
 
-
-        /**
-         * On Rejected
-         * @param dialog
-         */
         fun onRejected(dialog: DialogFragment)
     }
 
 
-    /** COMPANION OBJETC, CONST ENUM, INNER CLASS **/
-
     companion object {
 
-        /**
-         * Tag
-         */
         val TAG = "CONFIRMATION_DIALOG_FRAGMENT"
 
-        /**
-         * Title Arg
-         */
         val TITLE_ARG = "DIALOG_TITLE"
 
-        /**
-         * Show Dialog
-         * @param activity
-         * @return
-         */
+
         @JvmStatic
         fun showDialog(activity: AppCompatActivity,
                        title: String, confirmationDialogListener: ConfirmationDialogListener?): ConfirmationDialogFragment {
 
             val confirmationDialog = ConfirmationDialogFragment()
-            confirmationDialog.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.CommonDialogFragmentTheme)
-            // Config Arguments
+            confirmationDialog.setStyle(STYLE_NO_TITLE, R.style.CommonDialogFragmentTheme)
             val args = Bundle()
             args.putString(TITLE_ARG, title)
             confirmationDialog.arguments = args
 
-            // Config Listener
             if (confirmationDialogListener != null)
                 confirmationDialog.setConfirmationDialogListener(confirmationDialogListener)
 
@@ -138,12 +90,6 @@ open class ConfirmationDialogFragment: SupportDialogFragment() {
             return confirmationDialog
         }
 
-        /**
-         * Show Dialog
-         * @param activity
-         * @param title
-         * @return
-         */
         @JvmStatic
         fun showDialog(activity: AppCompatActivity, title: String): ConfirmationDialogFragment {
             return showDialog(activity, title, null)

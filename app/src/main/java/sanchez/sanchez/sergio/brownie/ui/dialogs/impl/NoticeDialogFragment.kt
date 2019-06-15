@@ -15,15 +15,8 @@ import sanchez.sanchez.sergio.brownie.sounds.ISoundManager
 import javax.inject.Inject
 
 
-/**
- Notice Dialog Fragment
- **/
 open class NoticeDialogFragment: SupportDialogFragment() {
 
-    /**
-     * Dependencies
-     * ============
-     */
 
     @Inject
     protected lateinit var soundManager: ISoundManager
@@ -31,33 +24,22 @@ open class NoticeDialogFragment: SupportDialogFragment() {
 
     private var noticeDialogListener: NoticeDialogListener? = null
 
-    /**
-     * Set Notice Dialog Listener
-     */
     fun setNoticeDialogListener(noticeDialogListener: NoticeDialogListener) {
         this.noticeDialogListener = noticeDialogListener
     }
 
-    /**
-     * Get Layout Resource
-     */
+
     override fun getLayoutRes(): Int = R.layout.notice_dialog_layout
 
-    /**
-     * Initialize Injector
-     */
     override fun initializeInjector() {
         BrownieApp.applicationComponent.inject(this)
     }
 
-    /**
-     * On View Created
-     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Set Dialog Title
+
         dialogTitle.text = title
-        // Dismiss On Click Listener
+
         dismiss.setOnClickListener {
             noticeDialogListener?.onAccepted(this)
             dismiss()
@@ -70,47 +52,26 @@ open class NoticeDialogFragment: SupportDialogFragment() {
 
     }
 
-    /**
-     * Show
-     */
     override fun show(manager: FragmentManager, tag: String?) {
         if (!manager.isDestroyed && !manager.isStateSaved) {
             super.show(manager, tag)
         }
     }
 
-    /**
-     * Notice Dialog Listener
-     */
     interface NoticeDialogListener {
 
-        /**
-         * On Accepted
-         * @param dialog
-         */
         fun onAccepted(dialog: DialogFragment)
     }
 
 
     companion object {
 
-        /**
-         * Tag
-         */
         val TAG = "NOTICE_DIALOG_FRAGMENT"
 
-        /**
-         * Title Arg
-         */
         const val TITLE_ARG = "DIALOG_TITLE"
         const val IS_SUCCESS_ARG = "IS_SUCCESS_ARG"
 
 
-        /**
-         * Show Dialog
-         * @param activity
-         * @return
-         */
         @JvmStatic
         fun showDialog(
             activity: AppCompatActivity,
@@ -127,7 +88,6 @@ open class NoticeDialogFragment: SupportDialogFragment() {
                 isCancelable = false
             }
 
-            // Config Listener
             if (noticeDialogListener != null)
                 noticeDialog.setNoticeDialogListener(noticeDialogListener)
 
