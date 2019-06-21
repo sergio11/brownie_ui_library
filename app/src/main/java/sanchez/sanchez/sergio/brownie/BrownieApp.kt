@@ -12,6 +12,8 @@ import sanchez.sanchez.sergio.brownie.di.modules.ApplicationModule
 abstract class BrownieApp: Application() {
 
 
+    lateinit var applicationComponent: ApplicationComponent
+
     override fun onCreate() {
         super.onCreate()
 
@@ -57,14 +59,11 @@ abstract class BrownieApp: Application() {
             .applicationModule(ApplicationModule(this))
             .build()
 
-
     companion object {
 
         @JvmStatic
         lateinit var instance: BrownieApp
 
-        @JvmStatic
-        lateinit var applicationComponent: ApplicationComponent
-
     }
+
 }

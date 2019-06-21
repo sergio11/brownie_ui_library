@@ -68,8 +68,7 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
      * On Create View
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        init()
-        return inflater.inflate(layoutId(), container, false)
+       return inflater.inflate(layoutId(), container, false)
     }
 
     /**
@@ -111,12 +110,6 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
      * On Inject
      */
     open fun onInject() {}
-
-    /**
-     * Init
-     */
-    open fun init() {}
-
 
     /**
      * Get View Model

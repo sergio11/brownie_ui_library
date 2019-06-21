@@ -32,7 +32,7 @@ open class NoticeDialogFragment: SupportDialogFragment() {
     override fun getLayoutRes(): Int = R.layout.notice_dialog_layout
 
     override fun initializeInjector() {
-        BrownieApp.applicationComponent.inject(this)
+        BrownieApp.instance.applicationComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -16,9 +16,6 @@ import sanchez.sanchez.sergio.brownie.ui.dialogs.impl.NoticeDialogFragment
 @Component(modules = [ ApplicationModule::class ])
 interface ApplicationComponent {
 
-    /**
-     * Inject into Notifice Dialog Fragment
-     */
     fun inject(noticeDialogFragment: NoticeDialogFragment)
 
     //Exposed to sub-graphs.

@@ -16,10 +16,10 @@ ext.constraint_layout_version = '1.1.3'
 
 android {
 
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 13
         versionName "0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -57,23 +57,23 @@ dependencies {
     implementation "io.github.inflationx:viewpump:$viewpump_version"
 
     // Preferences
-    implementation "androidx.preference:preference:$androidx_preferences"
-    implementation "androidx.preference:preference-ktx:$androidx_preferences"
+    api "androidx.preference:preference:$androidx_preferences"
+    api "androidx.preference:preference-ktx:$androidx_preferences"
 
     // Dagger
     kapt  "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation "com.google.dagger:dagger:$dagger_version"
+    api "com.google.dagger:dagger:$dagger_version"
 
     // Navigation
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
-    implementation "androidx.navigation:navigation-runtime:$navigation_version"
-    implementation "androidx.navigation:navigation-fragment:$navigation_version"
+    api "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    api "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    api "androidx.navigation:navigation-runtime:$navigation_version"
+    api "androidx.navigation:navigation-fragment:$navigation_version"
     // LifeCycle Extensions
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
+    api "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
 
     // Constraint Layout
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+    api "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 
     // Test
     testImplementation 'junit:junit:4.12'

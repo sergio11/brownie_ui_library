@@ -5,6 +5,8 @@ import sanchez.sanchez.sergio.brownie.di.modules.ActivityModule
 import sanchez.sanchez.sergio.brownie.di.scopes.PerActivity
 import sanchez.sanchez.sergio.brownie.permission.IPermissionManager
 import android.app.Activity
+import androidx.lifecycle.ViewModelProvider
+import dagger.Provides
 import sanchez.sanchez.sergio.brownie.di.modules.ViewModelModule
 
 /**

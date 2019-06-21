@@ -7,10 +7,7 @@ import sanchez.sanchez.sergio.brownie.di.scopes.PerActivity
 import javax.inject.Inject
 import javax.inject.Provider
 
-/**
- * View Model Factory
- */
-@PerActivity
+
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory
 @Inject constructor(private val creators: Map<Class<out ViewModel>,
