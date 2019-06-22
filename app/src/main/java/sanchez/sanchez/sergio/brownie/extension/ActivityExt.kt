@@ -5,8 +5,6 @@ import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import sanchez.sanchez.sergio.brownie.ui.dialogs.impl.NoticeDialogFragment
 import sanchez.sanchez.sergio.brownie.ui.dialogs.impl.ConfirmationDialogFragment
 import sanchez.sanchez.sergio.brownie.ui.dialogs.impl.ProgressDialogFragment
@@ -27,15 +25,6 @@ fun AppCompatActivity.addFragment(containerViewId: Int, fragment: Fragment, addT
     fragmentTransaction.commit()
 }
 
-
-fun AppCompatActivity.navController(@IdRes navHostId: Int): NavController? =
-    supportFragmentManager.findFragmentById(navHostId)?.let {
-        return if(it is NavHostFragment) {
-            it.navController
-        } else {
-            null
-        }
-    }
 
 
 fun <ViewT : View> AppCompatActivity.bindView(@IdRes idRes: Int): Lazy<ViewT> {
