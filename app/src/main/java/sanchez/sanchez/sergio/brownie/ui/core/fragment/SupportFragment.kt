@@ -47,7 +47,7 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
     /**
      * View Model
      */
-    private lateinit var viewModel: VM
+     lateinit var viewModel: VM
 
     /**
      * Listener
@@ -61,7 +61,7 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         onInject()
-        viewModel = getViewModel()
+        viewModel = initViewModel()
     }
 
     /**
@@ -77,8 +77,8 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        observeNavigation(getViewModel())
-        setupSnackbar(this, getViewModel().snackBarError, Snackbar.LENGTH_LONG)
+        observeNavigation(viewModel)
+        setupSnackbar(this, viewModel.snackBarError, Snackbar.LENGTH_LONG)
     }
 
 
@@ -114,7 +114,7 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
     /**
      * Get View Model
      */
-     private fun getViewModel(): VM = ViewModelProviders.of(this, viewModelFactory)
+     private fun initViewModel(): VM = ViewModelProviders.of(this, viewModelFactory)
         .get(mViewModelClass)
 
 

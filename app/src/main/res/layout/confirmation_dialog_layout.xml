@@ -7,7 +7,7 @@
 
     <TextView
             android:id="@+id/dialogTitle"
-            style="@style/CommonStrongText"
+            style="@style/BrownieCommonStrongText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -25,7 +25,7 @@
     <!-- Cancel Button -->
     <Button
             android:id="@+id/cancel"
-            style="@style/CancelActionButton"
+            style="@style/BrownieCancelActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -39,7 +39,7 @@
     <!-- Accept Button -->
     <Button
             android:id="@+id/accept"
-            style="@style/AcceptActionButton"
+            style="@style/BrownieAcceptActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"

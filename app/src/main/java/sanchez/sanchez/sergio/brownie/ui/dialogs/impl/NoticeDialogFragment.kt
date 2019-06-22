@@ -80,7 +80,7 @@ open class NoticeDialogFragment: SupportDialogFragment() {
 
 
             val noticeDialog = NoticeDialogFragment().apply {
-                setStyle(STYLE_NO_TITLE, R.style.CommonDialogFragmentTheme)
+                setStyle(STYLE_NO_TITLE, R.style.BrownieCommonDialogFragmentTheme)
                 arguments = Bundle().apply {
                     putString(TITLE_ARG, title)
                     putBoolean(IS_SUCCESS_ARG, isSuccess)

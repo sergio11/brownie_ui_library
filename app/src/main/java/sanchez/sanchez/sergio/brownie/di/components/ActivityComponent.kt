@@ -5,6 +5,7 @@ import sanchez.sanchez.sergio.brownie.di.modules.ActivityModule
 import sanchez.sanchez.sergio.brownie.di.scopes.PerActivity
 import sanchez.sanchez.sergio.brownie.permission.IPermissionManager
 import android.app.Activity
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import dagger.Provides
 import sanchez.sanchez.sergio.brownie.di.modules.ViewModelModule
@@ -21,6 +22,7 @@ import sanchez.sanchez.sergio.brownie.di.modules.ViewModelModule
 interface ActivityComponent {
 
     //Exposed to sub-graphs.
+    fun context(): Context
     fun activity(): Activity
     fun permissionManager(): IPermissionManager
 }

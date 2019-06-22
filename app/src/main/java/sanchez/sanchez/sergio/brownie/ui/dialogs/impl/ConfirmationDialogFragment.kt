@@ -77,7 +77,7 @@ open class ConfirmationDialogFragment: SupportDialogFragment() {
                        title: String, confirmationDialogListener: ConfirmationDialogListener?): ConfirmationDialogFragment {
 
             val confirmationDialog = ConfirmationDialogFragment()
-            confirmationDialog.setStyle(STYLE_NO_TITLE, R.style.CommonDialogFragmentTheme)
+            confirmationDialog.setStyle(STYLE_NO_TITLE, R.style.BrownieCommonDialogFragmentTheme)
             val args = Bundle()
             args.putString(TITLE_ARG, title)
             confirmationDialog.arguments = args

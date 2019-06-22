@@ -21,7 +21,7 @@
     </style>
 
     <!-- Common Action button Style -->
-    <style name="CommonActionButton" parent="@style/AppTheme.Button">
+    <style name="BrownieCommonActionButton" parent="@style/AppTheme.Button">
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginRight">16dp</item>
         <item name="android:layout_marginTop">8dp</item>
@@ -34,26 +34,26 @@
     </style>
 
     <!-- Common Action Button -->
-    <style name="CommonActionButton.Inverse" parent="@style/CommonActionButton">
+    <style name="BrownieCommonActionButton.Inverse" parent="@style/BrownieCommonActionButton">
         <item name="android:textColor">@color/common_btn_text_color_inverse</item>
         <item name="android:background">@drawable/common_action_button_state_inverse</item>
     </style>
 
     <!-- Accept Action Button -->
-    <style name="AcceptActionButton" parent="@style/CommonActionButton">
+    <style name="BrownieAcceptActionButton" parent="@style/BrownieCommonActionButton">
         <item name="android:textColor">@color/common_btn_text_color_inverse</item>
         <item name="android:background">@drawable/accept_action_button_state</item>
     </style>
 
     <!-- Cancel Action Button -->
-    <style name="CancelActionButton" parent="@style/CommonActionButton">
+    <style name="BrownieCancelActionButton" parent="@style/BrownieCommonActionButton">
         <item name="android:textColor">@color/common_btn_text_color_inverse</item>
         <item name="android:background">@drawable/cancel_action_button_state</item>
     </style>
 
     <!-- Title -->
     <!-- Common Title -->
-    <style name="CommonTitle">
+    <style name="BrownieCommonTitle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textAlignment">center</item>
         <item name="fontPath">fonts/roboto_bold.ttf</item>
@@ -63,13 +63,13 @@
     </style>
 
     <!-- Common Title Medium -->
-    <style name="CommonTitle.Medium">
+    <style name="BrownieCommonTitle.Medium">
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
         <item name="android:textSize">@dimen/common_title_text_size_medium</item>
     </style>
 
     <!-- Common Text Style -->
-    <style name="CommonText">
+    <style name="BrownieCommonText">
         <item name="fontPath">fonts/roboto_regular.ttf</item>
         <item name="android:padding">10dp</item>
         <item name="android:textStyle">normal</item>
@@ -77,28 +77,28 @@
     </style>
 
     <!-- Common Strong Text -->
-    <style name="CommonStrongText" parent="CommonText">
+    <style name="BrownieCommonStrongText" parent="BrownieCommonText">
         <item name="fontPath">fonts/roboto_bold.ttf</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <!-- Common Strong Medium Text -->
-    <style name="CommonStrongText.Big">
+    <style name="BrownieCommonStrongText.Big">
         <item name="android:textSize">@dimen/common_strong_big_text_size</item>
     </style>
 
     <!-- Common Strong Medium Text -->
-    <style name="CommonStrongText.Medium">
+    <style name="BrownieCommonStrongText.Medium">
         <item name="android:textSize">@dimen/common_strong_medium_text_size</item>
     </style>
 
     <!-- Common Strong Small Text -->
-    <style name="CommonStrongText.Small">
+    <style name="BrownieCommonStrongText.Small">
         <item name="android:textSize">@dimen/common_strong_small_text_size</item>
     </style>
 
     <!-- Common Strong Text All Caps -->
-    <style name="CommonStrongText.AllCaps">
+    <style name="BrownieCommonStrongText.AllCaps">
         <item name="android:textAllCaps">true</item>
     </style>
 
@@ -106,13 +106,13 @@
 
     <!-- Dialogs -->
 
-    <style name="CommonDialogWindow.Window" parent="@android:style/Animation.Activity">
+    <style name="BrownieCommonDialogWindow.Window" parent="@android:style/Animation.Activity">
         <item name="android:windowEnterAnimation">@anim/anim_in</item>
         <item name="android:windowExitAnimation">@anim/anim_out</item>
     </style>
 
-    <style name="CommonDialogFragmentTheme" parent="@android:style/Theme.Dialog">
-        <item name="android:windowAnimationStyle">@style/CommonDialogWindow.Window</item>
+    <style name="BrownieCommonDialogFragmentTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/BrownieCommonDialogWindow.Window</item>
         <item name="android:windowBackground">@drawable/common_dialog_drawable</item>
     </style>
 

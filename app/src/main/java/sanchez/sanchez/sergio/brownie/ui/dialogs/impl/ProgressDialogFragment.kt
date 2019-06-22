@@ -3,7 +3,6 @@ package sanchez.sanchez.sergio.brownie.ui.dialogs.impl
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.progress_dialog_layout.*
 import sanchez.sanchez.sergio.brownie.R
@@ -39,7 +38,7 @@ open class ProgressDialogFragment: SupportDialogFragment() {
         @JvmStatic
         fun showDialog(activity: AppCompatActivity, title: String): ProgressDialogFragment {
             val progressDialog = ProgressDialogFragment()
-            progressDialog.setStyle(STYLE_NO_TITLE, R.style.CommonDialogFragmentTheme)
+            progressDialog.setStyle(STYLE_NO_TITLE, R.style.BrownieCommonDialogFragmentTheme)
             val args = Bundle().apply {
                 putString(TITLE_ARG, title)
             }
