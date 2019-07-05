@@ -16,6 +16,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import sanchez.sanchez.sergio.brownie.extension.setupSnackbar
+import sanchez.sanchez.sergio.brownie.permission.IPermissionManager
 import sanchez.sanchez.sergio.brownie.ui.core.navigation.NavigationCommand
 import sanchez.sanchez.sergio.brownie.ui.core.viewmodel.SupportViewModel
 import java.lang.ClassCastException
@@ -24,7 +25,8 @@ import javax.inject.Inject
 /**
  * Support Fragment
  */
-abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelClass: Class<VM>): Fragment() {
+abstract class SupportFragment<VM : SupportViewModel, T>
+        (private val mViewModelClass: Class<VM>): Fragment(), IPermissionManager.OnCheckPermissionListener {
 
 
     /**
@@ -32,26 +34,17 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
      * ==============
      */
 
-    /**
-     * View Model Factory
-     */
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    /**
-     * Parent Activity
-     */
     @Inject
     lateinit var parentActivity: Activity
 
-    /**
-     * View Model
-     */
-     lateinit var viewModel: VM
+    @Inject
+    protected lateinit var permissionManager: IPermissionManager
 
-    /**
-     * Listener
-     */
+    lateinit var viewModel: VM
+
     private var listener: T? = null
 
 
@@ -59,8 +52,8 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
      * on Create
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         onInject()
+        super.onCreate(savedInstanceState)
         viewModel = initViewModel()
     }
 
@@ -106,10 +99,7 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
     @LayoutRes
     abstract fun layoutId(): Int
 
-    /**
-     * On Inject
-     */
-    open fun onInject() {}
+    abstract fun onInject()
 
     /**
      * Get View Model
@@ -142,4 +132,13 @@ abstract class SupportFragment<VM : SupportViewModel, T>(private val mViewModelC
      * [FragmentNavigatorExtras] mainly used to enable Shared Element transition
      */
     open fun getExtras(): FragmentNavigator.Extras = FragmentNavigatorExtras()
+
+    override fun onSinglePermissionGranted(permission: String) {
+    }
+
+    override fun onSinglePermissionRejected(permission: String) {
+    }
+
+    override fun onErrorOccurred(permission: String) {
+    }
 }

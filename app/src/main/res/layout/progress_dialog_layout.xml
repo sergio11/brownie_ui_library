@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/common_padding">
 
-    <!-- Support Loading Spinner -->
     <sanchez.sanchez.sergio.brownie.ui.components.SupportLoadingSpinner
             android:id="@+id/loadingSpinner"
             android:layout_width="80dp"
@@ -20,8 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Dialog Title -->
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/dialogTitle"
             style="@style/BrownieCommonStrongText"
             android:layout_width="0dp"
@@ -38,4 +36,4 @@
             app:layout_constraintStart_toEndOf="@id/loadingSpinner"
             app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

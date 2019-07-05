@@ -19,7 +19,6 @@ fun <ViewT : View> Fragment.bindView(@IdRes idRes: Int): Lazy<ViewT?> {
     }
 }
 
-
 fun Fragment.showSnackbar(snackbarText: String, timeLength: Int) {
     activity?.let { Snackbar.make(it.findViewById<View>(android.R.id.content), snackbarText, timeLength).show() }
 }
@@ -31,3 +30,4 @@ fun Fragment.setupSnackbar(lifecycleOwner: LifecycleOwner, snackbarEvent: LiveDa
         }
     })
 }
+

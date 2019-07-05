@@ -5,7 +5,10 @@ import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Build
+import sanchez.sanchez.sergio.brownie.sounds.DIALOG_SUCCESS_SOUND
 import sanchez.sanchez.sergio.brownie.sounds.ISoundManager
+import sanchez.sanchez.sergio.brownie.sounds.ISoundManager.Companion.DIALOG_CONFIRM
+import sanchez.sanchez.sergio.brownie.sounds.ISoundManager.Companion.DIALOG_ERROR
 
 
 private const val MAX_STREAMS = 2
@@ -37,9 +40,11 @@ class SoundPoolManagerImpl(
             SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0)
         }
 
-
-        // Sound Map
-        soundMap = hashMapOf()
+        soundMap  = hashMapOf(
+            Pair(DIALOG_CONFIRM, soundPool.load(context, DIALOG_CONFIRM, 1)),
+            Pair(DIALOG_ERROR, soundPool.load(context, DIALOG_ERROR, 1)),
+            Pair(DIALOG_SUCCESS_SOUND, soundPool.load(context, DIALOG_SUCCESS_SOUND, 1))
+        )
 
     }
 

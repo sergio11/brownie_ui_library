@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,11 @@ constructor(protected var context: Context,
             private var data: MutableList<T>,
             private val minItemsCount: Int = if (data.size > 0) data.size - 1 else 0)
     : RecyclerView.Adapter<SupportRecyclerViewAdapter<T>.SupportItemViewHolder<T>>() {
+
+    /**
+     * Layout Inflater
+     */
+    protected var inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     /**
      * Listener

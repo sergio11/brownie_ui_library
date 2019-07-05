@@ -8,12 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import sanchez.sanchez.sergio.brownie.extension.navController
+import sanchez.sanchez.sergio.brownie.permission.IPermissionManager
+import javax.inject.Inject
 
 
-/**
- * Support Activity
- */
-abstract class SupportActivity: AppCompatActivity() {
+abstract class SupportActivity: AppCompatActivity(), IPermissionManager.OnCheckPermissionListener {
+
+
+    @Inject
+    protected lateinit var permissionManager: IPermissionManager
 
     /**
      * On Create
@@ -49,7 +52,7 @@ abstract class SupportActivity: AppCompatActivity() {
      * If you want to inject Dependency Injection
      * on your activity, you can override this.
      */
-    open fun onInject() {}
+    abstract fun onInject()
 
 
     /**
