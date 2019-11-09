@@ -10,7 +10,7 @@
     <dimen name="common_list_item_stroke">4dip</dimen>
     <dimen name="toolbar_elevation_size">4dp</dimen>
     <dimen name="common_title_text_size">32dp</dimen>
-    <dimen name="common_title_text_size_medium">25dp</dimen>
+    <dimen name="common_title_text_size_medium">25sp</dimen>
     <dimen name="weekly_frequency_text_size">28sp</dimen>
     <!-- Common Strong Text -->
     <dimen name="common_strong_text_size">22dp</dimen>
@@ -63,5 +63,7 @@
     <dimen name="common_labeled_switch_height">60dp</dimen>
     <!-- Labeled Switch Width -->
     <dimen name="common_labeled_switch_width">120dp</dimen>
+
+    <dimen name="common_edit_text_size">18sp</dimen>
 
 </resources>

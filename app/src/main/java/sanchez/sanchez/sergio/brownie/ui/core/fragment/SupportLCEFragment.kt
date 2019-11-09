@@ -122,5 +122,5 @@ abstract class SupportLCEFragment<T, E, P, VM: SupportLCEViewModel<E, P>>(mViewM
      * Private Methods
      */
 
-    private fun loadData() = viewModel.loadData(onGetLoadParams())
+    protected fun loadData() = viewModel.loadData(onGetLoadParams())
 }

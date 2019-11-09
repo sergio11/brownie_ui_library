@@ -62,4 +62,11 @@ abstract class SupportActivity: AppCompatActivity(), IPermissionManager.OnCheckP
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
     }
 
+    /**
+     * Permission
+     */
+    override fun onSinglePermissionGranted(permission: String) {}
+    override fun onSinglePermissionRejected(permission: String) { }
+    override fun onErrorOccurred(permission: String) {}
+
 }

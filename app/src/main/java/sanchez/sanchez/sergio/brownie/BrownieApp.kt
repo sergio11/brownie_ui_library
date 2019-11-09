@@ -12,8 +12,6 @@ import sanchez.sanchez.sergio.brownie.di.modules.ApplicationModule
 abstract class BrownieApp: Application() {
 
 
-    lateinit var applicationComponent: ApplicationComponent
-
     override fun onCreate() {
         super.onCreate()
 
@@ -28,9 +26,6 @@ abstract class BrownieApp: Application() {
                 .build())
 
         instance = this
-
-        applicationComponent = onInitializeInjector()
-
 
         if (BuildConfig.DEBUG) {
             onDebugConfig()
@@ -50,14 +45,6 @@ abstract class BrownieApp: Application() {
      */
     open fun onReleaseConfig(){}
 
-
-    /**
-     * Initialize Injector
-     */
-    private fun onInitializeInjector(): ApplicationComponent =
-        DaggerApplicationComponent.builder()
-            .applicationModule(ApplicationModule(this))
-            .build()
 
     companion object {
 

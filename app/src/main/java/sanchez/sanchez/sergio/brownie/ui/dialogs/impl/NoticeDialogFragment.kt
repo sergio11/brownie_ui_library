@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.notice_dialog_layout.*
-import sanchez.sanchez.sergio.brownie.BrownieApp
 import sanchez.sanchez.sergio.brownie.R
 import sanchez.sanchez.sergio.brownie.sounds.DIALOG_ERROR_SOUND
 import sanchez.sanchez.sergio.brownie.sounds.DIALOG_SUCCESS_SOUND
@@ -14,13 +13,10 @@ import sanchez.sanchez.sergio.brownie.ui.dialogs.SupportDialogFragment
 import sanchez.sanchez.sergio.brownie.sounds.ISoundManager
 import javax.inject.Inject
 
-
 open class NoticeDialogFragment: SupportDialogFragment() {
 
-
-    @Inject
-    protected lateinit var soundManager: ISoundManager
-
+    /*@Inject
+    protected lateinit var soundManager: ISoundManager*/
 
     private var noticeDialogListener: NoticeDialogListener? = null
 
@@ -28,11 +24,13 @@ open class NoticeDialogFragment: SupportDialogFragment() {
         this.noticeDialogListener = noticeDialogListener
     }
 
-
     override fun getLayoutRes(): Int = R.layout.notice_dialog_layout
 
     override fun initializeInjector() {
-        BrownieApp.instance.applicationComponent.inject(this)
+
+        //DaggerComponentFactory
+
+        //BrownieApp.instance.applicationComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,10 +43,10 @@ open class NoticeDialogFragment: SupportDialogFragment() {
             dismiss()
         }
 
-        if(arguments != null && arguments!!.getBoolean(IS_SUCCESS_ARG))
+        /*if(arguments != null && arguments!!.getBoolean(IS_SUCCESS_ARG))
             soundManager.playSound(DIALOG_SUCCESS_SOUND)
         else
-            soundManager.playSound(DIALOG_ERROR_SOUND)
+            soundManager.playSound(DIALOG_ERROR_SOUND)*/
 
     }
 

@@ -103,6 +103,23 @@
     </style>
 
 
+    <style name="BrownieCommonTextInputLayout"
+        parent="Widget.Design.TextInputLayout">
+        <item name="android:textSize">@dimen/common_edit_text_size</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/colorPrimary</item>
+        <!-- Control color on normal state -->
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <!-- Control color on activated state -->
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+    </style>
+
+    <style name="BrownieCommonTextFloatLabelAppearance" parent="@android:style/TextAppearance.Small">
+        <!-- Floating label appearance here -->
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/common_edit_text_size</item>
+    </style>
 
     <!-- Dialogs -->
 

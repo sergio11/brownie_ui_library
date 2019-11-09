@@ -12,7 +12,6 @@ import sanchez.sanchez.sergio.brownie.notification.INotificationHelper
 
 
 
-
 /**
  * Application Module
  */
