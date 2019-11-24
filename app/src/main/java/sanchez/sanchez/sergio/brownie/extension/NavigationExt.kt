@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import sanchez.sanchez.sergio.brownie.ui.core.activity.SupportActivity
 
 
 fun AppCompatActivity.navController(@IdRes navHostId: Int): NavController? =
@@ -94,3 +95,6 @@ fun Activity.navigateAndFinish(destination: ActivityNavigator.Destination) {
     finish()
 }
 
+fun SupportActivity.navigate(@IdRes resId:Int) {
+    this.navController(this.navHostId())?.navigate(resId)
+}

@@ -2,12 +2,18 @@
 
     <string name="hours_minutes_seconds_format" formatted="false">%02dH:%02dM:%02dS</string>
     <string name="datetime_format">yyyy-MM-dd HH:mm:ss.SSS</string>
-
+    <string name="date_format">yyyy-MM-dd</string>
     <!-- Dialogs Strings -->
     <string name="default_notice_dialog_title">Notice Dialog</string>
 
     <string name="empty_text">-</string>
 
     <string name="accept">Accept</string>
+
+    <string name="main_navigation_home_item">Home</string>
+    <string name="main_navigation_services_item">Services</string>
+    <string name="main_navigation_notices_item">Notices</string>
+    <string name="main_navigation_profile_item">Profile</string>
+
 
 </resources>

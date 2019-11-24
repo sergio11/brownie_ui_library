@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -43,6 +43,12 @@
     <style name="BrownieAcceptActionButton" parent="@style/BrownieCommonActionButton">
         <item name="android:textColor">@color/common_btn_text_color_inverse</item>
         <item name="android:background">@drawable/accept_action_button_state</item>
+    </style>
+
+    <!-- Accept Action Button -->
+    <style name="BrownieAcceptActionButton.Transparent" parent="@style/BrownieCommonActionButton">
+        <item name="android:textColor">@color/common_btn_text_color_inverse</item>
+        <item name="android:background">@drawable/accept_action_button_transparent_state</item>
     </style>
 
     <!-- Cancel Action Button -->

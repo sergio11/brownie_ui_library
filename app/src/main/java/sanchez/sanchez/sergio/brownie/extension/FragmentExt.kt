@@ -11,6 +11,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.Snackbar
 import sanchez.sanchez.sergio.brownie.models.Event
+import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
+import android.R.attr.description
+
+
 
 
 fun <ViewT : View> Fragment.bindView(@IdRes idRes: Int): Lazy<ViewT?> {
@@ -19,8 +23,22 @@ fun <ViewT : View> Fragment.bindView(@IdRes idRes: Int): Lazy<ViewT?> {
     }
 }
 
-fun Fragment.showSnackbar(snackbarText: String, timeLength: Int) {
-    activity?.let { Snackbar.make(it.findViewById<View>(android.R.id.content), snackbarText, timeLength).show() }
+fun Fragment.showSnackbar(
+    description: String,
+    timeLength: Int,
+    actionText: String? = null,
+    onActionClickListener: View.OnClickListener? = null,
+    snackbarCallback: Snackbar.Callback? = null ) {
+    activity?.let {
+        Snackbar.make(it.findViewById<View>(android.R.id.content), description, timeLength).apply {
+            if(onActionClickListener != null)
+                setAction(actionText, onActionClickListener)
+            if(snackbarCallback != null)
+            addCallback(snackbarCallback)
+        }.also {snackBar ->
+            snackBar.show()
+        }
+    }
 }
 
 fun Fragment.setupSnackbar(lifecycleOwner: LifecycleOwner, snackbarEvent: LiveData<Event<Int>>, timeLength: Int) {

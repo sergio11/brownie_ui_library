@@ -42,7 +42,7 @@ open class ConfirmationDialogFragment: SupportDialogFragment() {
             dismiss()
         }
 
-        soundManager.playSound(DIALOG_CONFIRM_SOUND)
+        //soundManager.playSound(DIALOG_CONFIRM_SOUND)
     }
 
 

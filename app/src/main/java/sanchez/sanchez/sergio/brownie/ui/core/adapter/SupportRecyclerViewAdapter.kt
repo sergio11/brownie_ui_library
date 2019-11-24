@@ -8,6 +8,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import sanchez.sanchez.sergio.brownie.R
 
@@ -48,8 +49,19 @@ constructor(protected var context: Context,
      * Set data
      * @param data
      */
-    fun setData(data: MutableList<T>) {
+    @CallSuper
+    open fun setData(data: MutableList<T>) {
         this.data = data
+    }
+
+    @CallSuper
+    open fun replaceData(newData: MutableList<T>) {
+        this.data.apply {
+            clear()
+            addAll(newData)
+        }
+        notifyDataSetChanged()
+
     }
 
     /**
@@ -128,7 +140,14 @@ constructor(protected var context: Context,
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int):
             SupportItemViewHolder<T> = onCreateItemViewHolder(viewGroup)
 
-    override fun onBindViewHolder(holder: SupportItemViewHolder<T>, position: Int) {
+    /**
+     * On Bind View Holder
+     * @param holder
+     * @param position
+     */
+    override fun onBindViewHolder(
+        holder: SupportItemViewHolder<T>,
+        position: Int) {
         holder.bind(data[position])
     }
 

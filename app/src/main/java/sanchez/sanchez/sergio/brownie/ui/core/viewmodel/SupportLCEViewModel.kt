@@ -1,5 +1,6 @@
 package sanchez.sanchez.sergio.brownie.ui.core.viewmodel
 
+import androidx.annotation.CallSuper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
@@ -40,27 +41,28 @@ abstract class SupportLCEViewModel<T, E>: SupportViewModel() {
     @Throws(Exception::class)
     abstract suspend fun onLoadData(params: E): List<T>
 
-    /**
-     * Private Methods
-     */
 
-    private fun onDataFound(data: List<T>) {
+    @CallSuper
+    open fun onDataFound(data: List<T>) {
         this.dataList.postValue(data)
         this.status.postValue(SupportLCEOperationResultEnum.DATA_FOUND)
     }
 
-    private fun onDataNotFound() {
+    @CallSuper
+    open fun onDataNotFound() {
         this.dataList.postValue(ArrayList())
         this.status.postValue(SupportLCEOperationResultEnum.NO_DATA_FOUND)
     }
 
-    private fun onError(ex: Exception) {
+    @CallSuper
+    open fun onError(ex: Exception) {
         this.dataList.postValue(ArrayList())
         this.error.postValue(ex)
         this.status.postValue(SupportLCEOperationResultEnum.ERROR)
     }
 
-    private fun onLoading() {
+    @CallSuper
+    open fun onLoading() {
         this.dataList.postValue(ArrayList())
         this.status.postValue(SupportLCEOperationResultEnum.LOADING)
     }
