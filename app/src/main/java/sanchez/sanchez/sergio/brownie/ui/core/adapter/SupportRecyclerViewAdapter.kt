@@ -5,12 +5,14 @@ import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import sanchez.sanchez.sergio.brownie.R
+import kotlin.math.max
 
 /**
  * Support Recycler View Adapter
@@ -120,7 +122,7 @@ constructor(protected var context: Context,
      * Get Item Count
      * @return_icon
      */
-    override fun getItemCount(): Int = Math.max(data.size, minItemsCount)
+    override fun getItemCount(): Int = max(data.size, minItemsCount)
 
     /**
      * Get Item id
@@ -138,7 +140,10 @@ constructor(protected var context: Context,
      * @return_icon
      */
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int):
-            SupportItemViewHolder<T> = onCreateItemViewHolder(viewGroup)
+            SupportItemViewHolder<T> {
+        Log.d("SRVA", "onCreateItemViewHolder(viewGroup)")
+        return onCreateItemViewHolder(viewGroup)
+    }
 
     /**
      * On Bind View Holder
@@ -148,6 +153,8 @@ constructor(protected var context: Context,
     override fun onBindViewHolder(
         holder: SupportItemViewHolder<T>,
         position: Int) {
+
+        Log.d("SRVA", "onBindViewHolder for position: $position ")
         holder.bind(data[position])
     }
 
