@@ -18,6 +18,8 @@ abstract class SupportActivity: AppCompatActivity(), IPermissionManager.OnCheckP
     @Inject
     protected lateinit var permissionManager: IPermissionManager
 
+    protected var navController: NavController? = null
+
     /**
      * On Create
      * @param savedInstanceState
@@ -27,7 +29,9 @@ abstract class SupportActivity: AppCompatActivity(), IPermissionManager.OnCheckP
         onInject()
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
-        onSetupNavigation(navController(navHostId()))
+        onSetupNavigation(savedInstanceState, navController(navHostId()).also {
+            navController = it
+        })
     }
 
     /**
@@ -46,7 +50,7 @@ abstract class SupportActivity: AppCompatActivity(), IPermissionManager.OnCheckP
     /**
      * On Setup Navigation
      */
-    open fun onSetupNavigation(navController: NavController?){}
+    open fun onSetupNavigation(savedInstanceState: Bundle?, navController: NavController?){}
 
     /**
      * If you want to inject Dependency Injection

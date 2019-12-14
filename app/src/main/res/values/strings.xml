@@ -16,4 +16,8 @@
     <string name="main_navigation_profile_item">Profile</string>
 
 
+    <string name="accept_button_text">@android:string/ok</string>
+    <string name="cancel_button_text">@android:string/cancel</string>
+
+
 </resources>

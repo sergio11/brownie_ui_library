@@ -13,4 +13,5 @@
     <color name="translucentPrimaryColor">#90df885d</color>
     <color name="textColorPrimary">#212121</color>
     <color name="textColorSecondary">#757575</color>
+    <color name="white">@android:color/white</color>
 </resources>

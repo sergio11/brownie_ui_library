@@ -5,8 +5,8 @@ apply plugin: 'kotlin-kapt'
 
 ext.dexter_version = '5.0.0'
 ext.arrow_version = '1.0.0'
-ext.calligraphy_version = "3.0.0"
-ext.viewpump_version = "1.0.0"
+ext.calligraphy_version = "3.1.1"
+ext.viewpump_version = "2.0.3"
 ext.androidx_preferences = '1.1.0-rc01'
 ext.dagger_version = "2.16"
 ext.navigation_version = "2.1.0-alpha03"

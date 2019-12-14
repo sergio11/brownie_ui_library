@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Buttons -->
+
+    <!-- Filled, elevated button (default) -->
+    <!-- The default style represents an elevated button with a colored background.
+    This should be used for important, final actions that complete a flow,
+    like ‘Save’ or ‘Confirm’. If no style attribute is specified for a MaterialButton,
+     this is the style that will be used. -->
+    <style name="BrownieTheme.DefaultButton" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="fontPath">fonts/roboto_bold.ttf</item>
+        <item name="android:textSize">@dimen/common_strong_text_size</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="rippleColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="BrownieTheme.DefaultButton.Inverse">
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="rippleColor">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="BrownieTheme.DefaultButton.Accept">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/greenSuccess</item>
+        <item name="rippleColor">@color/white</item>
+    </style>
+
+    <style name="BrownieTheme.DefaultButton.Cancel">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/redDanger</item>
+        <item name="rippleColor">@color/white</item>
+    </style>
+
+    <!-- Filled, unelevated button -->
+    <!-- The UnelevatedButton style represents an unelevated button with a colored
+     background. -->
+    <style name="BrownieTheme.UnelevatedButton" parent="@style/Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="iconTint">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="rippleColor">@color/colorAccent</item>
+    </style>
+
+    <!-- Outlined button -->
+    <!-- The OutlinedButton style has a transparent background with colored text,
+    and a small stroke around the button. Outlined buttons are medium-emphasis buttons.
+    They contain actions that are important, but aren’t the primary action in an app. -->
+    <style name="BrownieTheme.OutlinedButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/colorAccent</item>
+        <item name="rippleColor">@color/white</item>
+    </style>
+
+    <!-- Text button -->
+    <!-- The TextButton style has a transparent background with colored text.
+        Text buttons are used for low-priority actions, especially when presenting
+         multiple options. -->
+    <style name="BrownieTheme.TextButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/white</item>
+        <item name="rippleColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="BrownieTheme.TextButton.Accent">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="rippleColor">@color/white</item>
+    </style>
+
+    <!-- Icon button -->
+    <!-- Every style for Material Button has an additional .Icon style.
+    This style is meant to be used when the icon attribute is set for the
+    button and the iconGravity is start. The .Icon style has a smaller start
+    padding to achieve visual balance in the button when a start-gravity icon
+    is present.-->
+    <style name="BrownieTheme.IconButton" parent="@style/Widget.MaterialComponents.Button.Icon">
+        <item name="iconTint">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+
+</resources>
