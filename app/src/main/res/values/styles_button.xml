@@ -51,6 +51,7 @@
     <style name="BrownieTheme.OutlinedButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
         <item name="strokeColor">@color/colorAccent</item>
         <item name="rippleColor">@color/white</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
     <!-- Text button -->
@@ -65,6 +66,11 @@
     <style name="BrownieTheme.TextButton.Accent">
         <item name="android:textColor">@color/colorAccent</item>
         <item name="rippleColor">@color/white</item>
+    </style>
+
+    <style name="BrownieTheme.TextButton.Secondary">
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="rippleColor">@color/textColorSecondary</item>
     </style>
 
     <!-- Icon button -->

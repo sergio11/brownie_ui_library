@@ -7,11 +7,13 @@ ext.dexter_version = '5.0.0'
 ext.arrow_version = '1.0.0'
 ext.calligraphy_version = "3.1.1"
 ext.viewpump_version = "2.0.3"
-ext.androidx_preferences = '1.1.0-rc01'
+ext.androidx_preferences = '1.1.0'
 ext.dagger_version = "2.16"
-ext.navigation_version = "2.1.0-alpha03"
-ext.lifecycle_extensions = "2.2.0-alpha02"
+ext.navigation_version = "2.2.0-rc03"
+ext.lifecycle_extensions = "2.2.0-rc03"
 ext.constraint_layout_version = '1.1.3'
+ext.material_components_version = '1.1.0-alpha09'
+ext.swipe_refresh_layout_version = '1.0.0'
 
 android {
 
@@ -47,8 +49,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
     implementation "com.karumi:dexter:$dexter_version"
     implementation "com.fernandocejas:arrow:$arrow_version"
 
@@ -76,9 +78,15 @@ dependencies {
     // Constraint Layout
     api "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 
+    // Material Components
+    api "com.google.android.material:material:$material_components_version"
+
+    // Swipe Refresh Layout
+    api "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
+
     // Test
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }

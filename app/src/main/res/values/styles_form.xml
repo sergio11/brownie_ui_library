@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="BrownieTheme.TextInputLayout.OutlinedBox" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="boxStrokeColor">@color/colorPrimary</item>
+        <!-- The color of the label in all other text field states (such as resting and disabled) -->
+        <item name="android:textColorHint">@color/textColorSecondary</item>
+        <item name="android:strokeColor">@color/colorPrimary</item>
+        <item name="hintTextAppearance">@style/BrownieTheme.TextInputLayout.HintTextStyle</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="BrownieTheme.TextInputLayout.HintTextStyle" parent="TextAppearance.Design.Hint">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+</resources>
