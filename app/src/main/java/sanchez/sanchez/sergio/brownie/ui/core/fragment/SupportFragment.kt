@@ -104,7 +104,7 @@ abstract class SupportFragment<VM : SupportViewModel, T>
     /**
      * Get View Model
      */
-     private fun initViewModel(): VM = ViewModelProviders.of(this, viewModelFactory)
+     private fun initViewModel(): VM = ViewModelProvider(this, viewModelFactory)
         .get(mViewModelClass)
 
 

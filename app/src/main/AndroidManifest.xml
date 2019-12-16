@@ -2,8 +2,23 @@
           package="sanchez.sanchez.sergio.brownie">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
-    <application android:allowBackup="true"
-                 android:supportsRtl="true"
-                 android:name=".BrownieApp"
-                 android:theme="@style/AppTheme"/>
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        android:name=".BrownieApp">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="brownie.core.file.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
+
+
+    </application>
 </manifest>

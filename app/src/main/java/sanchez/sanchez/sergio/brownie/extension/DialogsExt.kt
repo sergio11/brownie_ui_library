@@ -56,7 +56,7 @@ fun Fragment.showConfirmationDialog(title: String, confirmationDialogListener: C
 }
 
 fun SupportActivity.showConfirmationDialog(@StringRes stringResId: Int, confirmationDialogListener: ConfirmationDialogFragment.ConfirmationDialogListener? = null) {
-    showConfirmationDialog(getString(stringResId))
+    showConfirmationDialog(getString(stringResId), confirmationDialogListener)
 }
 
 fun Fragment.showConfirmationDialog(@StringRes stringResId: Int, confirmationDialogListener: ConfirmationDialogFragment.ConfirmationDialogListener? = null) {

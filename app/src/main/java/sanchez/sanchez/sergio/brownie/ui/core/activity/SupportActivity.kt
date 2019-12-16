@@ -1,10 +1,13 @@
 package sanchez.sanchez.sergio.brownie.ui.core.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import sanchez.sanchez.sergio.brownie.extension.navController
@@ -32,6 +35,22 @@ abstract class SupportActivity: AppCompatActivity(), IPermissionManager.OnCheckP
         onSetupNavigation(savedInstanceState, navController(navHostId()).also {
             navController = it
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        // Delegate activity result to fragments
+        delegateActivityResult(requestCode, resultCode, data, supportFragmentManager)
+    }
+
+    private fun delegateActivityResult(requestCode: Int, resultCode: Int, data: Intent?, fragmentManager: FragmentManager){
+        for (fragment in fragmentManager.fragments) {
+            if(fragment.childFragmentManager.fragments.isNotEmpty())
+                delegateActivityResult(requestCode, resultCode, data, fragment.childFragmentManager)
+            else {
+                fragment.onActivityResult(requestCode, resultCode, data)
+            }
+        }
     }
 
     /**

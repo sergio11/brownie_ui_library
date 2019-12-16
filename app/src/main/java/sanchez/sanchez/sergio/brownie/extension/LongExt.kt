@@ -23,8 +23,12 @@ fun Long.toDateStringWithAge(appContext: Context): String {
     val calendar = Calendar.getInstance().also {
         it.timeInMillis = this
     }
-    return SimpleDateFormat(appContext.getString(R.string.date_format_with_age, getAge()))
-        .format(calendar.time)
+
+    return appContext.getString(R.string.date_format_with_age,
+        SimpleDateFormat(appContext.getString(R.string.date_format), Locale.getDefault())
+            .format(calendar.time),
+        getAge()
+        )
 }
 
 fun Long.getAge(): Int {

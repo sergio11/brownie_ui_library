@@ -8,8 +8,8 @@
 
     <sanchez.sanchez.sergio.brownie.ui.components.SupportLoadingSpinner
             android:id="@+id/loadingSpinner"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
@@ -22,7 +22,7 @@
     <TextView
             android:id="@+id/dialogTitle"
             style="@style/BrownieCommonStrongText"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
