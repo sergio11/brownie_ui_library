@@ -3,6 +3,7 @@ package sanchez.sanchez.sergio.brownie.extension
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
@@ -47,10 +48,13 @@ fun View.createNavigateOnLongClickListener(@IdRes view: Int, @IdRes action: Int,
     }
 }
 
-
 fun Fragment.navigate(@IdRes action: Int, args: Bundle? = null) {
-    NavHostFragment.findNavController(this).navigate(action, args)
+    val navController = NavHostFragment.findNavController(this)
+    navController.currentDestination?.getAction(action)?.let {
+        navController.navigate(action, args)
+    }
 }
+
 
 fun Fragment.navigate(navDirections: NavDirections) {
     NavHostFragment.findNavController(this).navigate(navDirections)
