@@ -34,6 +34,10 @@
         <item name="android:textSize">@dimen/common_strong_text_size</item>
     </style>
 
+    <style name="BrownieCommonText.Medium">
+        <item name="android:textSize">@dimen/common_strong_medium_text_size</item>
+    </style>
+
     <!-- Common Strong Text -->
     <style name="BrownieCommonStrongText" parent="BrownieCommonText">
         <item name="fontPath">fonts/roboto_bold.ttf</item>
