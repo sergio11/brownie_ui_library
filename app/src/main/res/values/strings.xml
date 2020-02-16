@@ -14,7 +14,7 @@
     <!-- App Bottom Bar options menu -->
     <string name="main_navigation_home_item">Home</string>
     <string name="main_navigation_explore_item">Explore</string>
-    <string name="main_navigation_events_item">Events</string>
+    <string name="main_navigation_activities_item">Activities</string>
     <string name="main_navigation_profile_item">Profile</string>
 
 

@@ -29,6 +29,13 @@ abstract class SupportGroupedLCEViewModel<T, E>: SupportLCEViewModel<Section<T>,
     abstract fun onCheckIfNextElementIsInSameGroup(previousElement: T, nextElement: T): Boolean
 
     /**
+     * On Update Title For Group
+     * @param firstElement
+     * @param lastElement
+     */
+    open fun onUpdateTitleForGroup(firstElement: T, lastElement: T): String = ""
+
+    /**
      * On Create Data Set
      */
     abstract fun onCreateDataSet(params: E? = null): List<T>
@@ -38,6 +45,10 @@ abstract class SupportGroupedLCEViewModel<T, E>: SupportLCEViewModel<Section<T>,
      * Private Methods
      */
 
+    /**
+     * On Create Sections
+     * @param data
+     */
     private fun onCreateSections(data: MutableList<T>): List<Section<T>> {
 
         data.sortWith(Comparator { elementOne, elementTwo ->
@@ -45,15 +56,30 @@ abstract class SupportGroupedLCEViewModel<T, E>: SupportLCEViewModel<Section<T>,
 
         val sectionList = ArrayList<Section<T>>()
 
+
+        var currentSectionHeaderGroup: SectionHeader<T>? = null
+
         for (i in 0 until data.size) {
 
             if(i == 0 || !onCheckIfNextElementIsInSameGroup(
                     previousElement = data[i - 1],
                     nextElement = data[i]
                 ))
-                sectionList.add(SectionHeader(i, data[i]))
+                currentSectionHeaderGroup = SectionHeader(i, data[i]).also {
+                    sectionList.add(it)
+                }
 
             sectionList.add(SectionItem(i, data[i]))
+            currentSectionHeaderGroup?.apply {
+                groupCount += 1
+                lastElement = data[i]
+                groupTitle = onUpdateTitleForGroup(
+                    element(),
+                    data[i]
+                )
+            }
+
+
         }
 
         return sectionList
