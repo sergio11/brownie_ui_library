@@ -2,20 +2,39 @@ package sanchez.sanchez.sergio.brownie.notification
 
 import android.app.Notification
 import android.content.Intent
-
+import androidx.annotation.DrawableRes
 
 interface INotificationHelper {
 
-    fun showImportantNotification(title: String, body: String, intent: Intent?)
+    /**
+     * Show Important Notification
+     * @param smallIcon
+     * @param id
+     * @param title
+     * @param body
+     * @param intent
+     */
+    fun showImportantNotification(
+        @DrawableRes smallIcon: Int,
+        id: Int,
+        title: String,
+        body: String,
+        intent: Intent? = null
+    )
 
-    fun showNoticeNotification(title: String, body: String, intent: Intent?)
-
-    fun showSilentNotification(title: String, body: String, intent: Intent?)
-
-    fun createImportantNotification(title: String, body: String, intent: Intent?): Notification
-
-    fun createNoticeNotification(title: String, body: String, intent: Intent?): Notification
-
-    fun createSilentNotification(title: String, body: String, intent: Intent?): Notification
+    /**
+     * Create Important Notification
+     * @param smallIcon
+     * @param title
+     * @param body
+     * @param intent
+     * @return
+     */
+    fun createImportantNotification(
+        @DrawableRes smallIcon: Int,
+        title: String,
+        body: String,
+        intent: Intent? = null
+    ): Notification
 
 }

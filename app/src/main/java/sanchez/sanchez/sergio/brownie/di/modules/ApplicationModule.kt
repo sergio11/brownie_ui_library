@@ -6,6 +6,7 @@ import sanchez.sanchez.sergio.brownie.sounds.ISoundManager
 import javax.inject.Singleton
 import dagger.Provides
 import sanchez.sanchez.sergio.brownie.BrownieApp
+import sanchez.sanchez.sergio.brownie.di.modules.notifications.NotificationsModule
 import sanchez.sanchez.sergio.brownie.sounds.impl.SoundPoolManagerImpl
 import sanchez.sanchez.sergio.brownie.notification.impl.NotificationHelperImpl
 import sanchez.sanchez.sergio.brownie.notification.INotificationHelper
@@ -15,7 +16,7 @@ import sanchez.sanchez.sergio.brownie.notification.INotificationHelper
 /**
  * Application Module
  */
-@Module
+@Module(includes = [NotificationsModule::class])
 class ApplicationModule constructor(private val application: BrownieApp) {
 
     /**
@@ -27,18 +28,6 @@ class ApplicationModule constructor(private val application: BrownieApp) {
     fun provideApplicationContext(): Context {
         return this.application
     }
-
-    /**
-     * Provide Notification Helper
-     * @param appContext
-     * @return
-     */
-    @Provides
-    @Singleton
-    fun provideNotificationHelper(appContext: Context): INotificationHelper {
-        return NotificationHelperImpl(appContext)
-    }
-
 
     /**
      * Provide Sound Manager

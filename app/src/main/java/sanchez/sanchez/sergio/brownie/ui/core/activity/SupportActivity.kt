@@ -3,7 +3,6 @@ package sanchez.sanchez.sergio.brownie.ui.core.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -14,12 +13,9 @@ import sanchez.sanchez.sergio.brownie.extension.navController
 import sanchez.sanchez.sergio.brownie.permission.IPermissionManager
 import javax.inject.Inject
 
-
 abstract class SupportActivity: AppCompatActivity(), IPermissionManager.OnCheckPermissionListener {
 
-
-    @Inject
-    protected lateinit var permissionManager: IPermissionManager
+    @Inject protected lateinit var permissionManager: IPermissionManager
 
     protected var navController: NavController? = null
 

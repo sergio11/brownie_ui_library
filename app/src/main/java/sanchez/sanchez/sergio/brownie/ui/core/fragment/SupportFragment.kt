@@ -55,6 +55,7 @@ abstract class SupportFragment<VM : SupportViewModel, T>
         onInject()
         super.onCreate(savedInstanceState)
         viewModel = initViewModel()
+        onObserverLiveData(viewModel)
     }
 
     /**
@@ -107,6 +108,11 @@ abstract class SupportFragment<VM : SupportViewModel, T>
      private fun initViewModel(): VM = ViewModelProvider(this, viewModelFactory)
         .get(mViewModelClass)
 
+    /**
+     * On Observer Live Data
+     * @param viewModel
+     */
+    protected open fun onObserverLiveData(viewModel: VM){}
 
     /**
      * Utils Methods
@@ -133,12 +139,7 @@ abstract class SupportFragment<VM : SupportViewModel, T>
      */
     open fun getExtras(): FragmentNavigator.Extras = FragmentNavigatorExtras()
 
-    override fun onSinglePermissionGranted(permission: String) {
-    }
-
-    override fun onSinglePermissionRejected(permission: String) {
-    }
-
-    override fun onErrorOccurred(permission: String) {
-    }
+    override fun onSinglePermissionGranted(permission: String) {}
+    override fun onSinglePermissionRejected(permission: String) {}
+    override fun onErrorOccurred(permission: String) {}
 }
