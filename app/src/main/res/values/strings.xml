@@ -1,25 +1,2 @@
 <resources>
-
-    <string name="hours_minutes_seconds_format" formatted="false">%02dH:%02dM:%02dS</string>
-    <string name="datetime_format">yyyy-MM-dd HH:mm:ss.SSS</string>
-    <string name="date_format">yyyy-MM-dd</string>
-    <string name="date_format_with_age" formatted="false">%s (%d years)</string>
-    <!-- Dialogs Strings -->
-    <string name="default_notice_dialog_title">Notice Dialog</string>
-
-    <string name="empty_text">-</string>
-
-    <string name="accept">Accept</string>
-
-    <!-- App Bottom Bar options menu -->
-    <string name="main_navigation_home_item">Home</string>
-    <string name="main_navigation_explore_item">Explore</string>
-    <string name="main_navigation_activities_item">Activities</string>
-    <string name="main_navigation_profile_item">Profile</string>
-
-
-    <string name="accept_button_text">@android:string/ok</string>
-    <string name="cancel_button_text">@android:string/cancel</string>
-
-
 </resources>

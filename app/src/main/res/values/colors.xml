@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#df885d</color>
-    <color name="colorPrimaryDark">#a95a32</color>
-    <color name="colorAccent">#000000</color>
-    <color name="commonGray">#D8D8D8</color>
-    <color name="translucentPrimaryDarkColor">#90a95a32</color>
-    <color name="translucentWhite">#90FFFFFF</color>
-    <color name="greenSuccess">#4BB543</color>
-    <color name="translucentGreenSuccess">#904BB543</color>
-    <color name="redDanger">#ff2323</color>
-    <color name="translucentRedDanger">#90ff2323</color>
-    <color name="translucentPrimaryColor">#90df885d</color>
-    <color name="textColorPrimary">#212121</color>
-    <color name="textColorSecondary">#757575</color>
-    <color name="white">@android:color/white</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>
