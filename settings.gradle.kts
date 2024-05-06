@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Brownie UI Library"
 include(":app")
+include(":app:brownieuiexample")
