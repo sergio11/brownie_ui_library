@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,8 +30,8 @@ private val DEFAULT_BUTTON_MODIFIER = Modifier
 fun BrownieButton(
     modifier: Modifier = DEFAULT_BUTTON_MODIFIER,
     enabled: Boolean = true,
-    containerColor: Color,
-    contentColor: Color,
+    containerColor: Color = MaterialTheme.colorScheme.primary,
+    contentColor: Color = MaterialTheme.colorScheme.onPrimary,
     widthDp: Dp = DEFAULT_BUTTON_WIDTH,
     heightDp: Dp = DEFAULT_BUTTON_HEIGHT,
     enableBorder: Boolean = true,
