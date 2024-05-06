@@ -38,7 +38,7 @@ fun BrownieText(
     singleLine: Boolean = false,
     textBold: Boolean = false,
     maxLines: Int = DEFAULT_MAX_LINES,
-    textColor: Color,
+    textColor: Color = MaterialTheme.colorScheme.primary,
     textAlign: TextAlign? = null
 ) {
     CommonTextComponent(
