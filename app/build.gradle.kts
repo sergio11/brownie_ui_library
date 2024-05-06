@@ -45,6 +45,7 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.material.icons.extended)
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.androidx.compose.bom)
     implementation(libs.androidx.lifecycle.viewModelCompose)
