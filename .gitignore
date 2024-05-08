@@ -8,6 +8,8 @@
 # Java class files
 *.class
 
+github.properties
+
 # Generated files
 bin/
 gen/
