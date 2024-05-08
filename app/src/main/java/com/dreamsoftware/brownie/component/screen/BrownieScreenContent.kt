@@ -41,7 +41,7 @@ fun BrownieScreenContent(
     onBuildBottomBar: @Composable (() -> Unit)? = null,
     onBuildCustomTopBar: @Composable (() -> Unit)? = null,
     backgroundContent: @Composable BoxScope.() -> Unit = {},
-    screenContent: @Composable ColumnScope.() -> Unit = {},
+    screenContent: @Composable ColumnScope.() -> Unit = {}
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
     if(!errorMessage.isNullOrBlank()) {

@@ -9,7 +9,6 @@ fun SignInScreen(
     viewModel: SignInViewModel = hiltViewModel(),
     onGoToHome: () -> Unit,
     onGoToProfileSelector: () -> Unit,
-    onGoToSignUp: () -> Unit,
     onBackPressed: () -> Unit,
 ) {
     BrownieScreen(
@@ -23,6 +22,11 @@ fun SignInScreen(
             }
         }
     ) { uiState ->
-
+        SignInScreenContent(
+            uiState = uiState,
+            onEmailChanged = viewModel::onEmailChanged,
+            onPasswordChanged = viewModel::onPasswordChanged,
+            onSignIn = viewModel::onSignIn
+        )
     }
 }
