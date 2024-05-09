@@ -142,4 +142,48 @@ Inside the BrownieScreenContent, a BrownieCardColumn composable is used to arran
 
 Overall, the **SignInScreenContent** composable is responsible for rendering the content of the sign-in screen using Brownie's components. It ensures a consistent UI design and handles user interactions efficiently through callback functions.
 
+## Using Brownie UI Library
 
+### Step 1: Configuring Maven Repository
+
+Ensure to add the GitHub Maven repository to your `build.gradle` or `settings.gradle` file to access the dependency hosted on GitHub Packages:
+
+```kotlin
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/sergio11/brownie_ui_library")
+        credentials {
+            // Here, set your authentication credentials
+            username = githubProperties["gpr.usr"] as String? ?: System.getenv("GPR_USER")
+            password = githubProperties["gpr.key"] as String? ?: System.getenv("GPR_API_KEY")
+        }
+    }
+}
+```
+
+### Step 2: Adding the Dependency to the Project
+Once the repository is configured, you can add the "Brownie UI Library" dependency to your project.
+
+```
+brownie-ui = "CURRENT_VERSION"
+brownie-ui = { module = "com.dreamsoftware.libraries:brownie-ui", version.ref = "brownie-ui" }
+```
+
+```kotin
+implementation(libs.brownie.ui)
+```
+
+## Contribution
+Contributions to Brownie UI library are highly encouraged! If you're interested in adding new features, resolving bugs, or enhancing the project's functionality, please feel free to submit pull requests.
+
+## Credits
+Brownie UI library is developed and maintained by Sergio Sánchez Sánchez (Dream Software). Special thanks to the open-source community and the contributors who have made this project possible. If you have any questions, feedback, or suggestions, feel free to reach out at dreamsoftware92@gmail.com.
+
+## Visitors Count
+
+<img width="auto" src="https://profile-counter.glitch.me/brownie_ui_library/count.svg" />
+ 
+ ## Please Share & Star the repository to keep me motivated.
+  <a href = "https://github.com/sergio11/brownie_ui_library/stargazers">
+     <img src = "https://img.shields.io/github/stars/sergio11/brownie_ui_library" />
+  </a>
