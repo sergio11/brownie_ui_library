@@ -17,6 +17,8 @@ Brownie encourages the use of the Model-View-Intent (MVI) architecture pattern f
 - **View:** Renders the UI based on the state provided by the ViewModel. Brownie components are seamlessly integrated with Compose to create a declarative UI.
 - **Intent:** Represents user actions or events that trigger state changes. Brownie's components, like buttons and text fields, are designed to emit these intents efficiently.
 
+This setup leverages Brownie's components and ViewModel to accelerate the development of robust features while adhering to best practices in architecture and UI design.
+
 Here's an example of how you can use Brownie components in a screen following the MVI pattern:
 
 ```kotlin
@@ -47,6 +49,22 @@ fun SignInScreen(
     }
 }
 ```
+
+Inside the SignInScreen function, there's a BrownieScreen composable. This is a custom screen component provided by the Brownie library. It's responsible for managing the UI state and handling side effects in a declarative way. Here's what each parameter does:
+
+- **viewModel:** The **SignInViewModel** instance passed to the **BrownieScreen** component.
+- **onBackPressed:** The lambda function passed to the **BrownieScreen** component, which is called when the user navigates back from the screen.
+- **onInitialUiState:** A lambda function that provides the initial UI state for the screen. In this case, it returns a new instance of **SignInUiState.**
+- **onSideEffect:** A lambda function that handles side effects triggered by the ViewModel. When a side effect occurs (such as successful authentication or profile selection required), this function is called, and appropriate actions (navigating to home or profile selection) are performed.
+
+Finally, inside the BrownieScreen composable, there's another composable function called **SignInScreenContent.** This is the actual content of the sign-in screen, where UI elements like text fields, buttons, etc., are defined. It takes the current UI state (uiState) as a parameter and callback functions for handling user interactions:
+
+- **uiState:** The current state of the sign-in screen, which is provided by the BrownieScreen component.
+- **onEmailChanged:** A callback function for handling changes in the email input field.
+- **onPasswordChanged:** A callback function for handling changes in the password input field.
+- **onSignIn:** A callback function for handling the sign-in action.
+
+Overall, this implementation follows a declarative approach using Compose and Brownie components, making it easier to manage the UI state and handle user interactions in a clear and concise manner.
 
 ```kotlin
 @Composable
