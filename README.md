@@ -121,3 +121,18 @@ fun SignInScreenContent(
     }
 }
 ```
+
+This is a Composable function named **SignInScreenContent**, responsible for rendering the content of the sign-in screen. It takes the following parameters:
+
+- **uiState:** The current state of the sign-in screen, containing properties like isLoading, email, and password.
+- **onEmailChanged:** A callback function that will be invoked when the email input field changes.
+- **onPasswordChanged:** A callback function that will be invoked when the password input field changes.
+- **onSignIn:** A callback function that will be invoked when the user clicks the sign-in button.
+
+The **BrownieScreenContent** composable is used to create a screen layout. It takes a title resource as a parameter.
+
+Inside the BrownieScreenContent, a BrownieCardColumn composable is used to arrange multiple UI components vertically. This includes text fields for email and password inputs, a button for sign-in, and a divider between them.
+
+Overall, the **SignInScreenContent** composable is responsible for rendering the content of the sign-in screen using Brownie's components. It ensures a consistent UI design and handles user interactions efficiently through callback functions.
+
+
