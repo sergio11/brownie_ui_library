@@ -17,8 +17,8 @@ import com.dreamsoftware.brownie.component.BrownieText
 import com.dreamsoftware.brownie.component.BrownieTextFieldPassword
 import com.dreamsoftware.brownie.component.BrownieTextTypeEnum
 import com.dreamsoftware.brownie.component.screen.BrownieScreenContent
+import com.dreamsoftware.brownie.theme.BrownieTheme
 import com.dreamsoftware.brownieuiexample.R
-import com.dreamsoftware.brownieuiexample.ui.theme.BrownieUILibraryTheme
 
 @Composable
 fun SignInScreenContent(
@@ -77,7 +77,7 @@ fun SignInScreenContent(
 @Preview(showBackground = true)
 @Composable
 fun SignInScreenContentPreview() {
-    BrownieUILibraryTheme {
+    BrownieTheme {
         SignInScreenContent(
             uiState = SignInUiState(),
             onEmailChanged = {},

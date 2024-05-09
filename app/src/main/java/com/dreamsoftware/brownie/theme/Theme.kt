@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat
 fun BrownieTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     lightColorScheme: ColorScheme = BrownieLightColorScheme,
+    darkColorScheme: ColorScheme = BrownieDarkColorScheme,
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
@@ -27,7 +28,7 @@ fun BrownieTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        darkTheme -> lightColorScheme
+        darkTheme -> darkColorScheme
         else -> lightColorScheme
     }
     val view = LocalView.current

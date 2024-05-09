@@ -2,6 +2,7 @@ package com.dreamsoftware.brownie.component.screen
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
@@ -44,7 +45,7 @@ fun BrownieScreenContent(
     screenContent: @Composable ColumnScope.() -> Unit = {}
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
-    if(!errorMessage.isNullOrBlank()) {
+    if (!errorMessage.isNullOrBlank()) {
         LaunchedEffect(snackBarHostState) {
             snackBarHostState.showSnackbar(
                 message = errorMessage
@@ -69,13 +70,13 @@ fun BrownieScreenContent(
             }
         },
         topBar = {
-            if(hasTopBar) {
+            if (hasTopBar) {
                 onBuildCustomTopBar?.invoke() ?: BrownieTopAppBar(
                     titleRes = titleRes,
                     titleText = titleText,
                     navigationAction = navigationAction,
                     centerTitle = centerTitle,
-                    menuActions =  menuActions
+                    menuActions = menuActions
                 )
             }
         },
@@ -85,11 +86,13 @@ fun BrownieScreenContent(
             backgroundRes?.let {
                 BrownieScreenBackgroundImage(imageRes = it)
             }
-            Column(modifier = if(enableVerticalScroll) {
-                Modifier.verticalScroll(rememberScrollState())
-            } else {
-                Modifier.fillMaxWidth()
-            }) {
+            Column(
+                modifier = if (enableVerticalScroll) {
+                    Modifier.verticalScroll(rememberScrollState())
+                } else {
+                    Modifier.fillMaxWidth()
+                }.background(MaterialTheme.colorScheme.background)
+            ) {
                 screenContent()
             }
             backgroundContent()

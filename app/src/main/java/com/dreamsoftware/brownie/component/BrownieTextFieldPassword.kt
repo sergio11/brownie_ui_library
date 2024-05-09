@@ -25,20 +25,16 @@ val BrownieTextFieldPasswordModifier = Modifier.padding(vertical = 20.dp).width(
 fun BrownieTextFieldPassword(
     modifier: Modifier = BrownieTextFieldPasswordModifier,
     value: String? = null,
+    colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
     @StringRes labelRes: Int,
     @StringRes placeHolderRes: Int,
     onValueChanged: (String) -> Unit
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
-    TextField(
+    OutlinedTextField(
         modifier = modifier,
         value = value.orEmpty(),
         onValueChange = onValueChanged,
-        colors = TextFieldDefaults.colors(
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent
-        ),
         label = { Text(text = stringResource(id = labelRes), fontFamily = montserratFontFamily) },
         placeholder = { Text(text = stringResource(id = placeHolderRes), fontFamily = montserratFontFamily) },
         visualTransformation = if (passwordVisible)
@@ -46,6 +42,7 @@ fun BrownieTextFieldPassword(
         else
             PasswordVisualTransformation(),
         shape = RoundedCornerShape(27.dp),
+        colors = colors,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         trailingIcon = {
             val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff

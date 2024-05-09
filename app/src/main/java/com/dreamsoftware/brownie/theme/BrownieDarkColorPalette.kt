@@ -2,8 +2,8 @@ package com.dreamsoftware.brownie.theme
 
 import androidx.compose.ui.graphics.Color
 
-object BrownieLightColorPalette : IBrownieColorPalette {
-    override val mdThemePrimary = Color(0xFF6356e5)
+object BrownieDarkColorPalette : IBrownieColorPalette {
+    override val mdThemePrimary = Color(0xFF9FA8DA)
     override val mdThemeOnPrimary = Color(0xFFFFFFFF)
     override val mdThemePrimaryContainer = Color(0xFF9FA8DA)
     override val mdThemeOnPrimaryContainer = Color(0xFFFFFFFF)
@@ -19,18 +19,18 @@ object BrownieLightColorPalette : IBrownieColorPalette {
     override val mdThemeErrorContainer = Color(0xFFBA1A1A)
     override val mdThemeOnError = Color(0xFFFFFFFF)
     override val mdThemeOnErrorContainer = Color(0xFF410002)
-    override val mdThemeBackground = Color(0xFFFCFDF7)
-    override val mdThemeOnBackground = Color(0xFF1A1C19)
-    override val mdThemeSurface = Color(0xFFFCFDF7)
-    override val mdThemeOnSurface = Color(0xFF1A1C19)
-    override val mdThemeSurfaceVariant = Color(0xFFFCFDF7)
+    override val mdThemeBackground = Color(0xFF1A1C19)
+    override val mdThemeOnBackground = Color(0xFFFCFDF7)
+    override val mdThemeSurface = Color(0xFF1A1C19)
+    override val mdThemeOnSurface = Color(0xFFFCFDF7)
+    override val mdThemeSurfaceVariant = Color(0xFF1A1C19)
     override val mdThemeOnSurfaceVariant = Color(0xFFDDE5DA)
     override val mdThemeOutline = Color(0xFF727970)
     override val mdThemeInverseOnSurface = Color(0xFFF0F1EC)
     override val mdThemeInverseSurface = Color(0xFF2E312E)
     override val mdThemeInversePrimary = Color(0xFFFCFDF7)
     override val mdThemeShadow = Color(0xFF000000)
-    override val mdThemeSurfaceTint = Color(0xFFFCFDF7)
+    override val mdThemeSurfaceTint = Color(0xFF1A1C19)
     override val mdThemeOutlineVariant = Color(0xFFC1C9BE)
     override val mdThemeScrim = Color(0xFF000000)
 }
