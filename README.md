@@ -165,10 +165,25 @@ repositories {
 Once the repository is configured, you can add the "Brownie UI Library" dependency to your project.
 
 ```
-brownie-ui = "0.0.3"
+brownie-ui = "CURRENT_VERSION"
 brownie-ui = { module = "com.dreamsoftware.libraries:brownie-ui", version.ref = "brownie-ui" }
 ```
 
 ```kotin
 implementation(libs.brownie.ui)
 ```
+
+## Contribution
+Contributions to Brownie UI library are highly encouraged! If you're interested in adding new features, resolving bugs, or enhancing the project's functionality, please feel free to submit pull requests.
+
+## Credits
+Brownie UI library is developed and maintained by Sergio Sánchez Sánchez (Dream Software). Special thanks to the open-source community and the contributors who have made this project possible. If you have any questions, feedback, or suggestions, feel free to reach out at dreamsoftware92@gmail.com.
+
+## Visitors Count
+
+<img width="auto" src="https://profile-counter.glitch.me/brownie_ui_library/count.svg" />
+ 
+ ## Please Share & Star the repository to keep me motivated.
+  <a href = "https://github.com/sergio11/brownie_ui_library/stargazers">
+     <img src = "https://img.shields.io/github/stars/sergio11/brownie_ui_library" />
+  </a>
