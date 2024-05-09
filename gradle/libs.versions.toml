@@ -20,6 +20,7 @@ lifecycleRuntimeKtx = "2.7.0"
 hilt = "2.49"
 androidxHiltNavigationCompose = "1.2.0"
 brownie-ui = "0.0.1"
+timber = "5.0.1"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-corektx" }
@@ -44,6 +45,7 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
 brownie-ui = { module = "com.dreamsoftware.libraries:brownie-ui", version.ref = "brownie-ui" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [bundles]
 androidx-compose-bom = ["compose-material3", "compose-ui-tooling-preview"]

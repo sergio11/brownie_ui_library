@@ -12,4 +12,5 @@
     <string name="signin_input_password_placeholder">Enter your password</string>
     <string name="loading_dialog_title">Loading</string>
     <string name="loading_dialog_description">Please wait while we load the content</string>
+    <string name="generic_error_exception">An error occurred, please try again.</string>
 </resources>
