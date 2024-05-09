@@ -142,4 +142,33 @@ Inside the BrownieScreenContent, a BrownieCardColumn composable is used to arran
 
 Overall, the **SignInScreenContent** composable is responsible for rendering the content of the sign-in screen using Brownie's components. It ensures a consistent UI design and handles user interactions efficiently through callback functions.
 
+## Using Brownie UI Library
 
+### Step 1: Configuring Maven Repository
+
+Ensure to add the GitHub Maven repository to your `build.gradle` or `settings.gradle` file to access the dependency hosted on GitHub Packages:
+
+```kotlin
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/sergio11/brownie_ui_library")
+        credentials {
+            // Here, set your authentication credentials
+            username = githubProperties["gpr.usr"] as String? ?: System.getenv("GPR_USER")
+            password = githubProperties["gpr.key"] as String? ?: System.getenv("GPR_API_KEY")
+        }
+    }
+}
+```
+
+### Step 2: Adding the Dependency to the Project
+Once the repository is configured, you can add the "Brownie UI Library" dependency to your project.
+
+```
+brownie-ui = "0.0.3"
+brownie-ui = { module = "com.dreamsoftware.libraries:brownie-ui", version.ref = "brownie-ui" }
+```
+
+```kotin
+implementation(libs.brownie.ui)
+```
