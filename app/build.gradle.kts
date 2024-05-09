@@ -75,12 +75,27 @@ publishing {
 }
 
 dependencies {
+    // Core Library Desugaring for enabling modern APIs on older versions of Android
     coreLibraryDesugaring(libs.core.library.desugaring)
+
+    // AndroidX Core KTX to add Kotlin functionality to AndroidX core libraries
     implementation(libs.androidx.core.ktx)
+
+    // AndroidX Activity Compose for using Compose in AndroidX activities
     implementation(libs.androidx.activity.compose)
+
+    // Material Icons Extended for including a wide range of Material Design icons
     implementation(libs.material.icons.extended)
+
+    // Compose BOM (Bill of Materials) for managing the versions of Compose libraries
     implementation(platform(libs.compose.bom))
+
+    // AndroidX Compose BOM for managing versions of Compose libraries specific to AndroidX
     implementation(libs.bundles.androidx.compose.bom)
+
+    // ViewModel Compose for integrating ViewModel with Compose
     implementation(libs.androidx.lifecycle.viewModelCompose)
+
+    // Coil Compose for loading and displaying images in Compose
     implementation(libs.coil.compose)
 }
