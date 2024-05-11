@@ -19,7 +19,7 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 hilt = "2.49"
 androidxHiltNavigationCompose = "1.2.0"
-brownie-ui = "0.0.3"
+brownie-ui = "0.0.4"
 timber = "5.0.1"
 
 [libraries]
