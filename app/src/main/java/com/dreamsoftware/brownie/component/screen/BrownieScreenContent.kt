@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
@@ -39,6 +40,8 @@ fun BrownieScreenContent(
     hasTopBar: Boolean = true,
     enableVerticalScroll: Boolean = false,
     errorMessage: String? = null,
+    floatingActionButtonPosition: FabPosition = FabPosition.End,
+    onBuildFloatingActionButton: @Composable (() -> Unit)? = null,
     onBuildBottomBar: @Composable (() -> Unit)? = null,
     onBuildCustomTopBar: @Composable (() -> Unit)? = null,
     backgroundContent: @Composable BoxScope.() -> Unit = {},
@@ -56,6 +59,10 @@ fun BrownieScreenContent(
         bottomBar = {
             onBuildBottomBar?.invoke()
         },
+        floatingActionButton = {
+            onBuildFloatingActionButton?.invoke()
+        },
+        floatingActionButtonPosition = floatingActionButtonPosition,
         snackbarHost = {
             SnackbarHost(snackBarHostState) { data ->
                 with(MaterialTheme.colorScheme) {
