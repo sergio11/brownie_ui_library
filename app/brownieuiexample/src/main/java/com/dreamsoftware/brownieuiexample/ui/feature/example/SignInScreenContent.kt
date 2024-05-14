@@ -34,7 +34,9 @@ fun SignInScreenContent(
         descriptionRes = R.string.loading_dialog_description
     )
     BrownieScreenContent(
-        titleRes = R.string.signin_main_title_text
+        titleRes = R.string.signin_main_title_text,
+        hasTopBar = false,
+        backgroundRes = R.drawable.background_screen
     ) {
         BrownieText(
             modifier = Modifier

@@ -89,7 +89,9 @@ fun BrownieScreenContent(
         },
         containerColor = screenContainerColor
     ) { paddingValues ->
-        Box(modifier = Modifier.padding(paddingValues)) {
+        Box(modifier = Modifier
+            .padding(paddingValues)
+            .background(MaterialTheme.colorScheme.background)) {
             backgroundRes?.let {
                 BrownieScreenBackgroundImage(imageRes = it)
             }
@@ -98,7 +100,7 @@ fun BrownieScreenContent(
                     Modifier.verticalScroll(rememberScrollState())
                 } else {
                     Modifier.fillMaxWidth()
-                }.background(MaterialTheme.colorScheme.background)
+                }
             ) {
                 screenContent()
             }
