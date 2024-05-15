@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -40,6 +41,7 @@ fun BrownieScreenContent(
     hasTopBar: Boolean = true,
     enableVerticalScroll: Boolean = false,
     errorMessage: String? = null,
+    backgroundLayerColor: Color = MaterialTheme.colorScheme.primary.copy(0.4f),
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     onBuildFloatingActionButton: @Composable (() -> Unit)? = null,
     onBuildBottomBar: @Composable (() -> Unit)? = null,
@@ -92,10 +94,14 @@ fun BrownieScreenContent(
         Box(modifier = Modifier
             .padding(paddingValues)
             .background(MaterialTheme.colorScheme.background)) {
-            backgroundRes?.let {
-                BrownieScreenBackgroundImage(imageRes = it)
+            if(backgroundRes != null || onBuildBackgroundContent != null) {
+                if(backgroundRes != null) {
+                    BrownieScreenBackgroundImage(imageRes = backgroundRes)
+                } else {
+                    onBuildBackgroundContent?.invoke(this)
+                }
+                Box(modifier = Modifier.fillMaxSize().background(backgroundLayerColor))
             }
-            onBuildBackgroundContent?.invoke(this)
             Column(
                 modifier = if (enableVerticalScroll) {
                     Modifier.verticalScroll(rememberScrollState())
