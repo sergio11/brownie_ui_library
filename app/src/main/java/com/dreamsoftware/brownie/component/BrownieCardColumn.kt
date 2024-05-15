@@ -20,7 +20,7 @@ fun BrownieCardColumn(
     elevation: CardElevation = CardDefaults.outlinedCardElevation(),
     colors: CardColors = CardDefaults.outlinedCardColors(),
     shape: Shape = RoundedCornerShape(27.dp),
-    border: BorderStroke = BorderStroke(5.dp, MaterialTheme.colorScheme.primaryContainer),
+    border: BorderStroke = BorderStroke(5.dp, MaterialTheme.colorScheme.primary),
     content: @Composable ColumnScope.() -> Unit
 ) {
     OutlinedCard(

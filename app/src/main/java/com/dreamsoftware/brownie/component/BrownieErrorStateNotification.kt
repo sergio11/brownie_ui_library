@@ -64,8 +64,7 @@ fun BrownieErrorStateNotification(
                 )
                 if (isRetryButtonVisible) {
                     BrownieButton(
-                        text = R.string.retry_button_text,
-                        containerColor = MaterialTheme.colorScheme.primary,
+                        textRes = R.string.retry_button_text,
                         onClick = onRetryCalled
                     )
                 }

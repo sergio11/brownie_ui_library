@@ -44,7 +44,7 @@ fun BrownieScreenContent(
     onBuildFloatingActionButton: @Composable (() -> Unit)? = null,
     onBuildBottomBar: @Composable (() -> Unit)? = null,
     onBuildCustomTopBar: @Composable (() -> Unit)? = null,
-    backgroundContent: @Composable BoxScope.() -> Unit = {},
+    onBuildBackgroundContent: @Composable (BoxScope.() -> Unit)? = null,
     screenContent: @Composable ColumnScope.() -> Unit = {}
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
@@ -95,6 +95,7 @@ fun BrownieScreenContent(
             backgroundRes?.let {
                 BrownieScreenBackgroundImage(imageRes = it)
             }
+            onBuildBackgroundContent?.invoke(this)
             Column(
                 modifier = if (enableVerticalScroll) {
                     Modifier.verticalScroll(rememberScrollState())
@@ -104,7 +105,6 @@ fun BrownieScreenContent(
             ) {
                 screenContent()
             }
-            backgroundContent()
         }
     }
 }

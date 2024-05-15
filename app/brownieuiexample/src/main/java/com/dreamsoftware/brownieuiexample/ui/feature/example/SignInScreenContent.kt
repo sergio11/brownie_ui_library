@@ -9,6 +9,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dreamsoftware.brownie.component.BrownieButton
+import com.dreamsoftware.brownie.component.BrownieButtonTypeEnum
 import com.dreamsoftware.brownie.component.BrownieCardColumn
 import com.dreamsoftware.brownie.component.BrownieContentDivider
 import com.dreamsoftware.brownie.component.BrownieDefaultTextField
@@ -68,7 +69,8 @@ fun SignInScreenContent(
             )
             BrownieContentDivider()
             BrownieButton(
-                text = R.string.signin_login_button_text,
+                type = BrownieButtonTypeEnum.LARGE,
+                textRes = R.string.signin_login_button_text,
                 onClick = onSignIn
             )
             Spacer(modifier = Modifier.padding(bottom = 10.dp))
