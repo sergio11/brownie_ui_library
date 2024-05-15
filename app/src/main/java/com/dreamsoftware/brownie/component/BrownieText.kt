@@ -11,6 +11,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.dreamsoftware.brownie.R
+import com.dreamsoftware.brownie.theme.montserratFontFamily
 
 private const val DEFAULT_MAX_LINES = Int.MAX_VALUE
 
@@ -87,6 +88,7 @@ private fun CommonTextComponent(
         textAlign = textAlign,
         color = textColor,
         style = textStyle,
+        fontFamily = montserratFontFamily,
         fontWeight = if (textBold) {
             FontWeight.Bold
         } else {
