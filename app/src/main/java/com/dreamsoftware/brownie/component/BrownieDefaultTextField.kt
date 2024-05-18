@@ -16,7 +16,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.dreamsoftware.brownie.theme.montserratFontFamily
 
-val BrownieDefaultTextFieldModifier = Modifier.padding(vertical = 15.dp).width(300.dp)
+val BrownieDefaultTextFieldModifier = Modifier
+    .padding(vertical = 15.dp)
+    .width(300.dp)
 
 @Composable
 fun BrownieDefaultTextField(
@@ -27,6 +29,7 @@ fun BrownieDefaultTextField(
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
     @StringRes labelRes: Int,
     @StringRes placeHolderRes: Int,
+    @StringRes suffixRes: Int? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
     isSingleLine: Boolean = true,
     onValueChanged: (newValue: String) -> Unit = {},
@@ -40,6 +43,7 @@ fun BrownieDefaultTextField(
         readOnly = isReadOnly,
         label = { Text(stringResource(id = labelRes), fontFamily = montserratFontFamily) },
         placeholder = { Text(stringResource(id = placeHolderRes), fontFamily = montserratFontFamily) },
+        suffix = { suffixRes?.let { Text(text = stringResource(id = it), fontFamily = montserratFontFamily)}},
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = keyboardType),
         singleLine = isSingleLine,
         leadingIcon = leadingIcon,
