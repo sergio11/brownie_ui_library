@@ -40,6 +40,8 @@ fun BrownieDefaultTextField(
     @StringRes suffixRes: Int? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
     isSingleLine: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    prefix: @Composable (() -> Unit)? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     onValueChanged: (newValue: String) -> Unit = {},
     @DrawableRes leadingIconRes: Int? = null,
@@ -55,6 +57,7 @@ fun BrownieDefaultTextField(
         value = value.orEmpty(),
         enabled = isEnabled,
         readOnly = isReadOnly,
+        prefix = prefix,
         visualTransformation = visualTransformation,
         supportingText = {
             supportingText?.invoke()?.let { text ->
@@ -105,7 +108,7 @@ fun BrownieDefaultTextField(
         },
         colors = colors,
         shape = RoundedCornerShape(27.dp),
-        maxLines = if (isSingleLine) 1 else Int.MAX_VALUE,
+        maxLines = if (isSingleLine) 1 else maxLines,
         onValueChange = onValueChanged
     )
 }
