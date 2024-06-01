@@ -3,7 +3,6 @@ package com.dreamsoftware.brownie.component
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -81,7 +80,7 @@ fun BrownieTextFieldPassword(
         leadingIcon = {
             leadingIconRes?.let {
                 BrownieImageIcon(
-                    modifier = Modifier.size(22.dp),
+                    type = BrownieType.ICON,
                     iconRes = it,
                     tintColor = MaterialTheme.colorScheme.primary
                 )

@@ -91,7 +91,7 @@ fun BrownieDefaultTextField(
         leadingIcon = {
             leadingIconRes?.let {
                 BrownieImageIcon(
-                    modifier = Modifier.size(22.dp),
+                    type = BrownieType.ICON,
                     iconRes = it,
                     tintColor = MaterialTheme.colorScheme.primary
                 )
@@ -100,7 +100,7 @@ fun BrownieDefaultTextField(
         trailingIcon = {
             trailingIconRes?.let {
                 BrownieImageIcon(
-                    modifier = Modifier.size(22.dp),
+                    type = BrownieType.ICON,
                     iconRes = it,
                     tintColor = MaterialTheme.colorScheme.primary
                 )
