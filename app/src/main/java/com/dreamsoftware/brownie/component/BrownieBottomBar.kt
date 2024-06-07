@@ -14,6 +14,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.DefaultShadowColor
 
 data class BottomNavBarItem(
     val route: String,
@@ -26,6 +28,10 @@ data class BottomNavBarItem(
 fun BrownieBottomBar(
     items: List<BottomNavBarItem>,
     currentItemRouteSelected: String?,
+    ambientColor: Color = MaterialTheme.colorScheme.primary,
+    spotColor: Color = MaterialTheme.colorScheme.onPrimary,
+    containerColor: Color = MaterialTheme.colorScheme.primary,
+    contentColor: Color = MaterialTheme.colorScheme.onPrimary,
     onItemClicked: (BottomNavBarItem) -> Unit = {}
 ) {
     with(MaterialTheme.colorScheme) {
@@ -35,14 +41,14 @@ fun BrownieBottomBar(
                 .shadow(
                     elevation = 8.dp,
                     shape = RoundedCornerShape(16.dp),
-                    ambientColor = primary,
-                    spotColor = primary,
+                    ambientColor = ambientColor,
+                    spotColor = spotColor,
                     clip = true
                 )
         ) {
             NavigationBar(
-                containerColor = surface,
-                contentColor = onSurface
+                containerColor = containerColor,
+                contentColor = contentColor
             ) {
                 items.forEach { destination ->
                     NavigationBarItem(
@@ -53,15 +59,19 @@ fun BrownieBottomBar(
                                 type = BrownieType.ICON,
                                 iconRes = destination.icon,
                                 tintColor = if (currentItemRouteSelected == destination.route) {
-                                    onPrimary
-                                } else {
                                     primary
+                                } else {
+                                    onPrimary
                                 }
                             )
                         },
                         label = {
                             destination.titleRes?.let {
-                                BrownieText(type = BrownieTextTypeEnum.LABEL_SMALL, titleRes = it)
+                                BrownieText(
+                                    type = BrownieTextTypeEnum.LABEL_SMALL,
+                                    titleRes = it,
+                                    textColor = onPrimary
+                                )
                             }
                         },
                         colors = NavigationBarItemDefaults.colors(
