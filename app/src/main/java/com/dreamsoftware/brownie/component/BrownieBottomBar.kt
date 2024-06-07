@@ -30,7 +30,7 @@ fun BrownieBottomBar(
     currentItemRouteSelected: String?,
     ambientColor: Color = MaterialTheme.colorScheme.primary,
     spotColor: Color = MaterialTheme.colorScheme.onPrimary,
-    containerColor: Color = MaterialTheme.colorScheme.primary,
+    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
     contentColor: Color = MaterialTheme.colorScheme.onPrimary,
     onItemClicked: (BottomNavBarItem) -> Unit = {}
 ) {
@@ -59,7 +59,7 @@ fun BrownieBottomBar(
                                 type = BrownieType.ICON,
                                 iconRes = destination.icon,
                                 tintColor = if (currentItemRouteSelected == destination.route) {
-                                    primary
+                                    primaryContainer
                                 } else {
                                     onPrimary
                                 }
@@ -75,8 +75,8 @@ fun BrownieBottomBar(
                             }
                         },
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = primary,
-                            indicatorColor = primary
+                            selectedIconColor = onPrimary,
+                            indicatorColor = onPrimary
                         )
                     )
                 }
