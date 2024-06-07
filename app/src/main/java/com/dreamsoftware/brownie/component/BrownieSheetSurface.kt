@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun BrownieSheetSurface(
     surfaceColor: Color = Color.White,
+    enableVerticalScroll: Boolean = true,
     verticalArrangement: Arrangement.Vertical = Arrangement.Center,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     onSurfaceContent: @Composable ColumnScope.() -> Unit
@@ -34,8 +35,11 @@ fun BrownieSheetSurface(
         color = surfaceColor
     ) {
         Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
+            modifier = if (enableVerticalScroll) {
+                Modifier.verticalScroll(rememberScrollState())
+            } else {
+                Modifier
+            }
                 .fillMaxSize()
                 .background(color = surfaceColor),
             verticalArrangement = verticalArrangement,
