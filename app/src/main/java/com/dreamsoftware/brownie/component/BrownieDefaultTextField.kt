@@ -2,8 +2,8 @@ package com.dreamsoftware.brownie.component
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -61,7 +61,9 @@ fun BrownieDefaultTextField(
         visualTransformation = visualTransformation,
         supportingText = {
             supportingText?.invoke()?.let { text ->
-                Text(text = text, fontFamily = montserratFontFamily)
+                AnimatedVisibility(text.isNotEmpty()) {
+                    Text(text = text, fontFamily = montserratFontFamily)
+                }
             }
         },
         label = { Text(stringResource(id = labelRes), fontFamily = montserratFontFamily) },

@@ -2,6 +2,7 @@ package com.dreamsoftware.brownie.component
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -58,7 +59,9 @@ fun BrownieTextFieldPassword(
         onValueChange = onValueChanged,
         supportingText = {
             supportingText?.invoke()?.let { text ->
-                Text(text = text, fontFamily = montserratFontFamily)
+                AnimatedVisibility(text.isNotEmpty()) {
+                    Text(text = text, fontFamily = montserratFontFamily)
+                }
             }
         },
         label = { Text(text = stringResource(id = labelRes), fontFamily = montserratFontFamily) },

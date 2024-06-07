@@ -93,7 +93,7 @@ fun BrownieScreenContent(
     ) { paddingValues ->
         Box(modifier = Modifier
             .padding(paddingValues)
-            .background(MaterialTheme.colorScheme.background)) {
+            .background(screenContainerColor)) {
             if(backgroundRes != null || onBuildBackgroundContent != null) {
                 if(backgroundRes != null) {
                     BrownieScreenBackgroundImage(imageRes = backgroundRes)
