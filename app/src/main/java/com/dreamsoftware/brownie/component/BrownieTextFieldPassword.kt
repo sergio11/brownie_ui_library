@@ -3,6 +3,7 @@ package com.dreamsoftware.brownie.component
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,9 +33,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.dreamsoftware.brownie.component.core.BrownieTextFieldSeparator
 import com.dreamsoftware.brownie.theme.montserratFontFamily
 
-val BrownieTextFieldPasswordModifier = Modifier.padding(vertical = 20.dp).width(300.dp)
+val BrownieTextFieldPasswordModifier = Modifier
+    .padding(vertical = 20.dp)
+    .width(300.dp)
 
 @Composable
 fun BrownieTextFieldPassword(
@@ -42,6 +46,8 @@ fun BrownieTextFieldPassword(
     value: String? = null,
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
     supportingText: (() -> String)? = null,
+    errorMessage: String? = null,
+    enableTextFieldSeparator: Boolean = false,
     @StringRes labelRes: Int,
     @StringRes placeHolderRes: Int,
     @DrawableRes leadingIconRes: Int? = null,
@@ -52,49 +58,69 @@ fun BrownieTextFieldPassword(
 ) {
     val focusManager = LocalFocusManager.current
     var passwordVisible by remember { mutableStateOf(false) }
-    OutlinedTextField(
-        modifier = modifier,
-        value = value.orEmpty(),
-        prefix = prefix,
-        onValueChange = onValueChanged,
-        supportingText = {
-            supportingText?.invoke()?.let { text ->
-                AnimatedVisibility(text.isNotEmpty()) {
-                    Text(text = text, fontFamily = montserratFontFamily)
+    with(MaterialTheme.colorScheme) {
+        Column {
+            OutlinedTextField(
+                modifier = modifier,
+                value = value.orEmpty(),
+                prefix = prefix ?: if (enableTextFieldSeparator) {
+                    {
+                        BrownieTextFieldSeparator()
+                    }
+                } else {
+                    null
+                },
+                onValueChange = onValueChanged,
+                supportingText = supportingText?.invoke()?.let { text ->
+                    {
+                        AnimatedVisibility(text.isNotEmpty()) {
+                            Text(text = text, fontFamily = montserratFontFamily)
+                        }
+                    }
+                },
+                label = { Text(text = stringResource(id = labelRes), fontFamily = montserratFontFamily) },
+                placeholder = { Text(text = stringResource(id = placeHolderRes), fontFamily = montserratFontFamily) },
+                visualTransformation = if (passwordVisible)
+                    VisualTransformation.None
+                else
+                    PasswordVisualTransformation(),
+                shape = RoundedCornerShape(27.dp),
+                colors = colors,
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        onDone?.invoke(focusManager) ?: run {
+                            focusManager.moveFocus(FocusDirection.Down)
+                        }
+                    }
+                ),
+                leadingIcon = leadingIconRes?.let {
+                    {
+                        BrownieImageIcon(
+                            type = BrownieType.ICON,
+                            iconRes = it,
+                            tintColor =primary
+                        )
+                    }
+                } ?: leadingIcon,
+                trailingIcon = {
+                    val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+                    val description = if (passwordVisible) "Hide password" else "Show password"
+                    IconButton(onClick = { passwordVisible = !passwordVisible}){
+                        Icon(imageVector  = image, contentDescription = description, tint = primary)
+                    }
                 }
-            }
-        },
-        label = { Text(text = stringResource(id = labelRes), fontFamily = montserratFontFamily) },
-        placeholder = { Text(text = stringResource(id = placeHolderRes), fontFamily = montserratFontFamily) },
-        visualTransformation = if (passwordVisible)
-            VisualTransformation.None
-        else
-            PasswordVisualTransformation(),
-        shape = RoundedCornerShape(27.dp),
-        colors = colors,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        keyboardActions = KeyboardActions(
-            onDone = {
-                onDone?.invoke(focusManager) ?: run {
-                    focusManager.moveFocus(FocusDirection.Down)
-                }
-            }
-        ),
-        leadingIcon = {
-            leadingIconRes?.let {
-                BrownieImageIcon(
-                    type = BrownieType.ICON,
-                    iconRes = it,
-                    tintColor = MaterialTheme.colorScheme.primary
+            )
+            errorMessage?.let {
+                BrownieText(
+                    modifier = Modifier
+                        .padding(top = 5.dp)
+                        .width(250.dp),
+                    type = BrownieTextTypeEnum.LABEL_MEDIUM,
+                    titleText = it,
+                    textColor = error
                 )
-            } ?: leadingIcon
-        },
-        trailingIcon = {
-            val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-            val description = if (passwordVisible) "Hide password" else "Show password"
-            IconButton(onClick = { passwordVisible = !passwordVisible}){
-                Icon(imageVector  = image, contentDescription = description, tint = MaterialTheme.colorScheme.primary)
             }
         }
-    )
+    }
 }
