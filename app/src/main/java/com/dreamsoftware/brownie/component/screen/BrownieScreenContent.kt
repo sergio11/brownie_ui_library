@@ -104,7 +104,9 @@ fun BrownieScreenContent(
             }
             Column(
                 modifier = if (enableVerticalScroll) {
-                    Modifier.verticalScroll(rememberScrollState())
+                    Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
                 } else {
                     Modifier.fillMaxWidth()
                 }
