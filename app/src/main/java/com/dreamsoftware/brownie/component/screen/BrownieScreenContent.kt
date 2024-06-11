@@ -41,6 +41,7 @@ fun BrownieScreenContent(
     hasTopBar: Boolean = true,
     enableVerticalScroll: Boolean = false,
     errorMessage: String? = null,
+    infoMessage: String? = null,
     backgroundLayerColor: Color = MaterialTheme.colorScheme.primary.copy(0.4f),
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     onBuildFloatingActionButton: @Composable (() -> Unit)? = null,
@@ -49,12 +50,16 @@ fun BrownieScreenContent(
     onBuildBackgroundContent: @Composable (BoxScope.() -> Unit)? = null,
     screenContent: @Composable ColumnScope.() -> Unit = {}
 ) {
-    val snackBarHostState = remember { SnackbarHostState() }
+    val snackBarErrorHostState = remember { SnackbarHostState() }
+    val snackBarInfoHostState = remember { SnackbarHostState() }
     if (!errorMessage.isNullOrBlank()) {
-        LaunchedEffect(snackBarHostState) {
-            snackBarHostState.showSnackbar(
-                message = errorMessage
-            )
+        LaunchedEffect(snackBarErrorHostState) {
+            snackBarErrorHostState.showSnackbar(message = errorMessage)
+        }
+    }
+    if (!infoMessage.isNullOrBlank()) {
+        LaunchedEffect(snackBarInfoHostState) {
+            snackBarInfoHostState.showSnackbar(message = infoMessage)
         }
     }
     Scaffold(
@@ -66,13 +71,24 @@ fun BrownieScreenContent(
         },
         floatingActionButtonPosition = floatingActionButtonPosition,
         snackbarHost = {
-            SnackbarHost(snackBarHostState) { data ->
+            SnackbarHost(snackBarErrorHostState) { data ->
                 with(MaterialTheme.colorScheme) {
                     Snackbar(
                         shape = RoundedCornerShape(10.dp),
-                        containerColor = background,
-                        actionColor = primary,
-                        contentColor = onBackground,
+                        containerColor = errorContainer,
+                        actionColor = onError,
+                        contentColor = onError,
+                        snackbarData = data
+                    )
+                }
+            }
+            SnackbarHost(snackBarInfoHostState) { data ->
+                with(MaterialTheme.colorScheme) {
+                    Snackbar(
+                        shape = RoundedCornerShape(10.dp),
+                        containerColor = primaryContainer,
+                        actionColor = onPrimaryContainer,
+                        contentColor = onPrimaryContainer,
                         snackbarData = data
                     )
                 }
