@@ -39,7 +39,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
     abstract fun onGetDefaultState(): STATE
 
     fun onErrorAccepted() {
-        updateState { it.copyState(error = null) }
+        updateState { it.copyState(errorMessage = null) }
     }
 
     /**
@@ -179,7 +179,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      */
     private fun onLoading() {
         updateState {
-            it.copyState(isLoading = true, error = null)
+            it.copyState(isLoading = true, errorMessage = null)
         }
     }
 
@@ -204,7 +204,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
             onMapExceptionToState?.invoke(ex, it.copyState(isLoading = false)) ?: run {
                 it.copyState(
                     isLoading = false,
-                    error = ex.message
+                    errorMessage = ex.message
                 )
             }
         }
@@ -216,11 +216,11 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
  */
 abstract class UiState<out T: UiState<T>>(
     open val isLoading: Boolean,
-    open val error: String?
+    open val errorMessage: String?
 ) {
     abstract fun copyState(
         isLoading: Boolean = this.isLoading,
-        error: String? = this.error
+        errorMessage: String? = this.errorMessage
     ): T
 }
 
