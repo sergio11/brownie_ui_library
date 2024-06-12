@@ -22,10 +22,11 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.window.PopupProperties
+import com.dreamsoftware.brownie.utils.EMPTY
 import kotlinx.coroutines.delay
 
 data class BrownieDropdownMenuItem(
-    val id: String,
+    val id: String = String.EMPTY,
     @StringRes val textRes: Int? = null,
     val text: String? = null
 )
@@ -36,13 +37,16 @@ fun BrownieFieldDropdown(
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
     isReadOnly: Boolean = false,
-    value: BrownieDropdownMenuItem? = null,
+    value: String? = null,
+    menuItemSelected: BrownieDropdownMenuItem? = null,
     menuItems: List<BrownieDropdownMenuItem> = emptyList(),
     @StringRes labelRes: Int,
     @StringRes placeHolderRes: Int,
     errorMessage: String? = null,
+    onValueChanged: (newValue: String) -> Unit = {},
     prefix: @Composable (() -> Unit)? = null,
     enableTextFieldSeparator: Boolean = false,
+    enableKeyboardController: Boolean = true,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     @DrawableRes leadingIconRes: Int? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
@@ -66,7 +70,13 @@ fun BrownieFieldDropdown(
             isReadOnly = isReadOnly,
             isSingleLine = true,
             errorMessage = errorMessage,
-            value = value?.text ?: value?.textRes?.let { stringResource(id = it) },
+            onValueChanged = {
+                if(it.isNotBlank() && menuItems.isNotEmpty()) {
+                    isExpanded = true
+                }
+                onValueChanged(it)
+            },
+            value = value ?: menuItemSelected?.text ?: menuItemSelected?.textRes?.let { stringResource(id = it) },
             leadingIconRes = leadingIconRes,
             leadingIcon = leadingIcon,
             prefix = prefix,
@@ -108,8 +118,10 @@ fun BrownieFieldDropdown(
             }
         }
     }
-    LaunchedEffect(isExpanded) {
-        delay(100)
-        keyboardController?.hide()
+    if(enableKeyboardController) {
+        LaunchedEffect(isExpanded) {
+            delay(100)
+            keyboardController?.hide()
+        }
     }
 }
