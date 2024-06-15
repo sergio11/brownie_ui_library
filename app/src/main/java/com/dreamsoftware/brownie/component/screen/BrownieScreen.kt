@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.dreamsoftware.brownie.core.BrownieViewModel
 import com.dreamsoftware.brownie.core.SideEffect
 import com.dreamsoftware.brownie.core.UiState
@@ -16,6 +17,8 @@ fun <UI: UiState<UI>, SE: SideEffect, VM: BrownieViewModel<UI, SE>> BrownieScree
     onInit: VM.() -> Unit = {},
     onBackPressed: () -> Unit = {},
     onSideEffect: VM.(SE) -> Unit = {},
+    onResume: VM.() -> Unit = {},
+    onPause: VM.() -> Unit = {},
     content: @Composable VM.(uiState: UI) -> Unit
 ) {
     BackHandler(onBack = onBackPressed)
@@ -28,6 +31,12 @@ fun <UI: UiState<UI>, SE: SideEffect, VM: BrownieViewModel<UI, SE>> BrownieScree
                 onSideEffect(it)
             }
         )
+        LifecycleResumeEffect(Unit) {
+            onResume()
+            onPauseOrDispose {
+                onPause()
+            }
+        }
         val uiState by produceUiState(
             initialState = onInitialUiState(),
             lifecycle = lifecycle,

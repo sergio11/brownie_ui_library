@@ -5,21 +5,22 @@ minSdk = "24"
 agp = "8.3.2"
 kotlin = "1.9.10"
 androidComposeCompiler = "1.5.3"
-coilCompose = "2.3.0"
+coilCompose = "2.4.0"
 androidLibrary = "8.2.1"
 androidx-activity-compose = "1.9.0"
-androidx-lifecycle = "2.7.0"
+androidx-lifecycle = "2.8.2"
+lifecycle-runtime-compose = "2.8.2"
 androidx-corektx = "1.13.1"
-compose_bom = "2024.05.00"
-material-icons-extended = "1.6.7"
+compose_bom = "2024.06.00"
+material-icons-extended = "1.6.8"
 desugar-jdk-libs = "2.0.4"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.7.0"
+lifecycleRuntimeKtx = "2.8.2"
 hilt = "2.49"
 androidxHiltNavigationCompose = "1.2.0"
-brownie-ui = "0.0.26"
+brownie-ui = "0.0.27"
 timber = "5.0.1"
 
 [libraries]
@@ -30,6 +31,7 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose"
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-lifecycle-viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle-runtime-compose" }
 material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "material-icons-extended" }
 core-library-desugaring = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
