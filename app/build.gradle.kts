@@ -56,7 +56,7 @@ publishing {
             run {
                 groupId = "com.dreamsoftware.libraries"
                 artifactId = "brownie-ui"
-                version = "0.0.27"
+                version = "0.0.28"
                 artifact("$buildDir/outputs/aar/app-release.aar")
             }
         }
@@ -85,7 +85,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     // Material Icons Extended for including a wide range of Material Design icons
-    implementation(libs.material.icons.extended)
+    api(libs.material.icons.extended)
 
     // Compose BOM (Bill of Materials) for managing the versions of Compose libraries
     implementation(platform(libs.compose.bom))
@@ -97,7 +97,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewModelCompose)
 
     // Lifecycle-aware components perform actions in response to a change in the lifecycle status of another component, such as activities and fragments. These components help you produce better-organized, and often lighter-weight code, that is easier to maintain.
-    implementation(libs.lifecycle.runtime.compose)
+    api(libs.lifecycle.runtime.compose)
 
     // Coil Compose for loading and displaying images in Compose
     implementation(libs.coil.compose)

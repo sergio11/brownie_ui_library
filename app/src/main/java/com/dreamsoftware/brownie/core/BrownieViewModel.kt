@@ -17,17 +17,30 @@ import kotlinx.coroutines.launch
  */
 abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : ViewModel() {
 
+    private companion object {
+        const val ENABLE_REPLAY_SIDE_EFFECTS = 1
+        const val DISABLE_REPLAY_SIDE_EFFECTS = 0
+    }
+
     // MutableStateFlow for managing UI state
     private val _uiState: MutableStateFlow<STATE> by lazy {
         MutableStateFlow(onGetDefaultState())
     }
+
     // Immutable StateFlow for observing UI state changes
     val uiState: StateFlow<STATE> = _uiState
 
     // MutableSharedFlow for emitting side effects
     private val _sideEffect: MutableSharedFlow<EFFECT> by lazy {
-        MutableSharedFlow()
+        MutableSharedFlow(
+            replay = if (enableReplayOnSideEffects) {
+                ENABLE_REPLAY_SIDE_EFFECTS
+            } else {
+                DISABLE_REPLAY_SIDE_EFFECTS
+            }
+        )
     }
+
     // Immutable SharedFlow for observing side effects
     val sideEffect: SharedFlow<EFFECT> = _sideEffect.asSharedFlow()
 
@@ -37,6 +50,8 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @return The default UI state.
      */
     abstract fun onGetDefaultState(): STATE
+
+    open val enableReplayOnSideEffects: Boolean = true
 
     fun onErrorAccepted() {
         updateState { it.copyState(errorMessage = null) }
@@ -70,7 +85,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @param onMapExceptionToState A function to map exceptions to the state.
      * @return The result of the use case execution.
      */
-    protected suspend fun <RESULT, UC: BrownieUseCase<RESULT>> executeUseCase(
+    protected suspend fun <RESULT, UC : BrownieUseCase<RESULT>> executeUseCase(
         useCase: UC,
         onGetDefaultValue: () -> RESULT,
         onMapExceptionToState: ((Exception, STATE) -> STATE)? = null,
@@ -94,7 +109,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @param onFailed A callback function for failed execution.
      * @param onMapExceptionToState A function to map exceptions to the state.
      */
-    protected fun <RESULT, UC: BrownieUseCase<RESULT>> executeUseCase(
+    protected fun <RESULT, UC : BrownieUseCase<RESULT>> executeUseCase(
         useCase: UC,
         onSuccess: (RESULT) -> Unit = {},
         onFailed: () -> Unit = {},
@@ -123,7 +138,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @param onGetDefaultValue A function that provides a default value in case of failure.
      * @return The result of the use case execution.
      */
-    protected suspend fun <PARAMS, RESULT, UC: BrownieUseCaseWithParams<PARAMS, RESULT>> executeUseCaseWithParams(
+    protected suspend fun <PARAMS, RESULT, UC : BrownieUseCaseWithParams<PARAMS, RESULT>> executeUseCaseWithParams(
         useCase: UC,
         params: PARAMS,
         onMapExceptionToState: ((Exception, STATE) -> STATE)? = null,
@@ -152,7 +167,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @param onFailed A callback function to be invoked upon failed execution.
      * @param onMapExceptionToState A function to map exceptions to the state.
      */
-    protected fun <PARAMS, RESULT, UC: BrownieUseCaseWithParams<PARAMS, RESULT>> executeUseCaseWithParams(
+    protected fun <PARAMS, RESULT, UC : BrownieUseCaseWithParams<PARAMS, RESULT>> executeUseCaseWithParams(
         useCase: UC,
         params: PARAMS,
         onSuccess: (RESULT) -> Unit = {},
@@ -198,7 +213,10 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @param ex The exception that occurred.
      * @param onMapExceptionToState A function to map exceptions to the state.
      */
-    private fun onErrorOccurred(ex: Exception, onMapExceptionToState: ((Exception, STATE) -> STATE)?) {
+    private fun onErrorOccurred(
+        ex: Exception,
+        onMapExceptionToState: ((Exception, STATE) -> STATE)?
+    ) {
         ex.printStackTrace()
         updateState {
             onMapExceptionToState?.invoke(ex, it.copyState(isLoading = false)) ?: run {
@@ -214,7 +232,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
 /**
  * Interface representing the UI state.
  */
-abstract class UiState<out T: UiState<T>>(
+abstract class UiState<out T : UiState<T>>(
     open val isLoading: Boolean,
     open val errorMessage: String?
 ) {
