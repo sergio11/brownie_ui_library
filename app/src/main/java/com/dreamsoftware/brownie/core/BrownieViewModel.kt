@@ -20,7 +20,10 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
     private companion object {
         const val ENABLE_REPLAY_SIDE_EFFECTS = 1
         const val DISABLE_REPLAY_SIDE_EFFECTS = 0
+        const val EXTRA_BUFFER_CAPACITY = 64
     }
+
+    protected open val enableReplayOnSideEffects: Boolean = true
 
     // MutableStateFlow for managing UI state
     private val _uiState: MutableStateFlow<STATE> by lazy {
@@ -33,11 +36,12 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
     // MutableSharedFlow for emitting side effects
     private val _sideEffect: MutableSharedFlow<EFFECT> by lazy {
         MutableSharedFlow(
-            replay = if (enableReplayOnSideEffects) {
+            replay = if(enableReplayOnSideEffects) {
                 ENABLE_REPLAY_SIDE_EFFECTS
             } else {
                 DISABLE_REPLAY_SIDE_EFFECTS
-            }
+            },
+            extraBufferCapacity = EXTRA_BUFFER_CAPACITY.takeIf { enableReplayOnSideEffects } ?: 0
         )
     }
 
@@ -50,8 +54,6 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @return The default UI state.
      */
     abstract fun onGetDefaultState(): STATE
-
-    open val enableReplayOnSideEffects: Boolean = true
 
     fun onErrorAccepted() {
         updateState { it.copyState(errorMessage = null) }

@@ -6,6 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.dreamsoftware.brownie.core.BrownieViewModel
 import com.dreamsoftware.brownie.core.SideEffect
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 internal fun <SE: SideEffect, VM: BrownieViewModel<*, SE>>ConsumeSideEffects(
@@ -15,7 +16,7 @@ internal fun <SE: SideEffect, VM: BrownieViewModel<*, SE>>ConsumeSideEffects(
 ) {
     LaunchedEffect(viewModel, lifecycle) {
         lifecycle.repeatOnLifecycle(state = Lifecycle.State.STARTED) {
-            viewModel.sideEffect.collect { event ->
+            viewModel.sideEffect.collectLatest { event ->
                 onSideEffectFired(event)
             }
         }
