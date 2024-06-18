@@ -20,10 +20,8 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
     private companion object {
         const val ENABLE_REPLAY_SIDE_EFFECTS = 1
         const val DISABLE_REPLAY_SIDE_EFFECTS = 0
-        const val EXTRA_BUFFER_CAPACITY = 64
+        const val EXTRA_BUFFER_CAPACITY_SIZE = 64
     }
-
-    protected open val enableReplayOnSideEffects: Boolean = true
 
     // MutableStateFlow for managing UI state
     private val _uiState: MutableStateFlow<STATE> by lazy {
@@ -33,20 +31,24 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
     // Immutable StateFlow for observing UI state changes
     val uiState: StateFlow<STATE> = _uiState
 
-    // MutableSharedFlow for emitting side effects
-    private val _sideEffect: MutableSharedFlow<EFFECT> by lazy {
+    // MutableSharedFlow with replay enabled
+    private val _sideEffectWithReplay: MutableSharedFlow<EFFECT> by lazy {
         MutableSharedFlow(
-            replay = if(enableReplayOnSideEffects) {
-                ENABLE_REPLAY_SIDE_EFFECTS
-            } else {
-                DISABLE_REPLAY_SIDE_EFFECTS
-            },
-            extraBufferCapacity = EXTRA_BUFFER_CAPACITY.takeIf { enableReplayOnSideEffects } ?: 0
+            replay = ENABLE_REPLAY_SIDE_EFFECTS,
+            extraBufferCapacity = EXTRA_BUFFER_CAPACITY_SIZE
         )
     }
 
-    // Immutable SharedFlow for observing side effects
-    val sideEffect: SharedFlow<EFFECT> = _sideEffect.asSharedFlow()
+    val sideEffectWithReplay: SharedFlow<EFFECT> = _sideEffectWithReplay.asSharedFlow()
+
+    // MutableSharedFlow without replay
+    private val _sideEffectWithoutReplay: MutableSharedFlow<EFFECT> by lazy {
+        MutableSharedFlow(
+            replay = DISABLE_REPLAY_SIDE_EFFECTS
+        )
+    }
+
+    val sideEffectWithoutReplay: SharedFlow<EFFECT> = _sideEffectWithoutReplay.asSharedFlow()
 
     /**
      * Provides the default UI state when the ViewModel is initialized.
@@ -73,9 +75,13 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      *
      * @param effect The side effect to be emitted.
      */
-    protected fun launchSideEffect(effect: EFFECT) {
+    protected fun launchSideEffect(effect: EFFECT, enableReplay: Boolean = false) {
         viewModelScope.launch {
-            _sideEffect.emit(effect)
+            if (enableReplay) {
+                _sideEffectWithReplay.emit(effect)
+            } else {
+                _sideEffectWithoutReplay.emit(effect)
+            }
         }
     }
 

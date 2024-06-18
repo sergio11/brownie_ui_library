@@ -14,11 +14,27 @@ internal fun <SE: SideEffect, VM: BrownieViewModel<*, SE>>ConsumeSideEffects(
     lifecycle: Lifecycle,
     onSideEffectFired: (SE) -> Unit
 ) {
+    RepeatOnStart(viewModel, lifecycle) {
+        sideEffectWithReplay.collectLatest { event ->
+            onSideEffectFired(event)
+        }
+    }
+    RepeatOnStart(viewModel, lifecycle) {
+        sideEffectWithoutReplay.collectLatest { event ->
+            onSideEffectFired(event)
+        }
+    }
+}
+
+@Composable
+private fun <SE: SideEffect, VM: BrownieViewModel<*, SE>> RepeatOnStart(
+    viewModel: VM,
+    lifecycle: Lifecycle,
+    block: suspend VM.() -> Unit
+) {
     LaunchedEffect(viewModel, lifecycle) {
         lifecycle.repeatOnLifecycle(state = Lifecycle.State.STARTED) {
-            viewModel.sideEffect.collectLatest { event ->
-                onSideEffectFired(event)
-            }
+            viewModel.block()
         }
     }
 }
