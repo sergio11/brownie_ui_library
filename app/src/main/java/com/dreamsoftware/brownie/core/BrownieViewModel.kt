@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
  * @param STATE The type representing the UI state.
  * @param EFFECT The type representing side effects.
  */
-abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : ViewModel() {
+abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : ViewModel(), IBrownieScreenActionListener {
 
     private companion object {
         const val ENABLE_REPLAY_SIDE_EFFECTS = 1
@@ -234,6 +234,10 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
                 )
             }
         }
+    }
+
+    override fun onErrorMessageCleared() {
+        updateState { it.copyState(errorMessage = null) }
     }
 }
 

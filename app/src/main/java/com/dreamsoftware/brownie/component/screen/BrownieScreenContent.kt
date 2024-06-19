@@ -41,7 +41,9 @@ fun BrownieScreenContent(
     hasTopBar: Boolean = true,
     enableVerticalScroll: Boolean = false,
     errorMessage: String? = null,
+    onErrorMessageCleared: () -> Unit = {},
     infoMessage: String? = null,
+    onInfoMessageCleared: () -> Unit = {},
     backgroundLayerColor: Color = MaterialTheme.colorScheme.primary.copy(0.4f),
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     onBuildFloatingActionButton: @Composable (() -> Unit)? = null,
@@ -55,11 +57,13 @@ fun BrownieScreenContent(
     if (!errorMessage.isNullOrBlank()) {
         LaunchedEffect(snackBarErrorHostState) {
             snackBarErrorHostState.showSnackbar(message = errorMessage)
+            onErrorMessageCleared()
         }
     }
     if (!infoMessage.isNullOrBlank()) {
         LaunchedEffect(snackBarInfoHostState) {
             snackBarInfoHostState.showSnackbar(message = infoMessage)
+            onInfoMessageCleared()
         }
     }
     Scaffold(
