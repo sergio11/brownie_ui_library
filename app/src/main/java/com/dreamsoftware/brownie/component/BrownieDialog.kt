@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -77,9 +78,10 @@ internal fun BrownieDialogUI(
             Image(
                 painter = painterResource(id = mainLogoRes),
                 contentDescription = null, // decorative
+                contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .padding(top = 30.dp)
-                    .size(200.dp)
+                    .width(200.dp)
             )
             Column(modifier = Modifier.padding(16.dp)) {
                 BrownieText(
