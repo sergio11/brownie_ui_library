@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.DefaultShadowColor
 
 data class BottomNavBarItem(
     val route: String,
@@ -32,6 +31,7 @@ fun BrownieBottomBar(
     spotColor: Color = MaterialTheme.colorScheme.onPrimary,
     containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
     contentColor: Color = MaterialTheme.colorScheme.onPrimary,
+    iconColorSelected: Color = MaterialTheme.colorScheme.primaryContainer,
     onItemClicked: (BottomNavBarItem) -> Unit = {}
 ) {
     with(MaterialTheme.colorScheme) {
@@ -59,7 +59,7 @@ fun BrownieBottomBar(
                                 type = BrownieType.ICON,
                                 iconRes = destination.icon,
                                 tintColor = if (currentItemRouteSelected == destination.route) {
-                                    primaryContainer
+                                    iconColorSelected
                                 } else {
                                     onPrimary
                                 }

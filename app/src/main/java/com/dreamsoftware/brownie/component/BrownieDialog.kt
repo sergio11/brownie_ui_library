@@ -79,7 +79,7 @@ internal fun BrownieDialogUI(
                 contentDescription = null, // decorative
                 modifier = Modifier
                     .padding(top = 30.dp)
-                    .size(100.dp)
+                    .size(200.dp)
             )
             Column(modifier = Modifier.padding(16.dp)) {
                 BrownieText(
