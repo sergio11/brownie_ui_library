@@ -47,6 +47,7 @@ fun BrownieTextFieldPassword(
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
     supportingText: (() -> String)? = null,
     errorMessage: String? = null,
+    isReadOnly: Boolean = false,
     enableTextFieldSeparator: Boolean = false,
     @StringRes labelRes: Int,
     @StringRes placeHolderRes: Int,
@@ -54,7 +55,7 @@ fun BrownieTextFieldPassword(
     leadingIcon: @Composable (() -> Unit)? = null,
     prefix: @Composable (() -> Unit)? = null,
     onDone: ((FocusManager) -> Unit)? = null,
-    onValueChanged: (String) -> Unit
+    onValueChanged: (String) -> Unit = {}
 ) {
     val focusManager = LocalFocusManager.current
     var passwordVisible by remember { mutableStateOf(false) }
@@ -63,6 +64,7 @@ fun BrownieTextFieldPassword(
             OutlinedTextField(
                 modifier = modifier,
                 value = value.orEmpty(),
+                readOnly = isReadOnly,
                 prefix = prefix ?: if (enableTextFieldSeparator) {
                     {
                         BrownieTextFieldSeparator()
