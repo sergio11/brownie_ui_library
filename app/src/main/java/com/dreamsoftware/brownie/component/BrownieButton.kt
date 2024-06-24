@@ -33,7 +33,8 @@ enum class BrownieButtonTypeEnum {
 enum class BrownieButtonStyleTypeEnum {
     NORMAL,
     INVERSE,
-    TRANSPARENT
+    TRANSPARENT,
+    DANGER
 }
 
 @Composable
@@ -78,6 +79,7 @@ fun  BrownieButton(
                                 BrownieButtonStyleTypeEnum.NORMAL -> primary
                                 BrownieButtonStyleTypeEnum.INVERSE -> secondary
                                 BrownieButtonStyleTypeEnum.TRANSPARENT -> surface
+                                BrownieButtonStyleTypeEnum.DANGER -> surface
                             }
                         } else {
                             Color.Transparent
@@ -101,11 +103,17 @@ fun  BrownieButton(
                         secondary
                     }
                     BrownieButtonStyleTypeEnum.TRANSPARENT -> Color.Transparent
+                    BrownieButtonStyleTypeEnum.DANGER -> if (enableBorder) {
+                        error.copy(alpha = 0.8f)
+                    } else {
+                        error
+                    }
                 },
                 contentColor = when(style) {
                     BrownieButtonStyleTypeEnum.NORMAL -> onPrimaryContainer
                     BrownieButtonStyleTypeEnum.INVERSE -> onSecondaryContainer
                     BrownieButtonStyleTypeEnum.TRANSPARENT -> surface
+                    BrownieButtonStyleTypeEnum.DANGER -> onError
                 }
             )
         ) {
@@ -126,6 +134,7 @@ fun  BrownieButton(
                         BrownieButtonStyleTypeEnum.NORMAL -> onPrimaryContainer
                         BrownieButtonStyleTypeEnum.INVERSE -> onSecondaryContainer
                         BrownieButtonStyleTypeEnum.TRANSPARENT -> surface
+                        BrownieButtonStyleTypeEnum.DANGER -> onError
                     },
                     textAlign = TextAlign.Center,
                     textBold = true
