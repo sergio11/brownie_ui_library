@@ -91,21 +91,27 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @param useCase The use case to execute.
      * @param onGetDefaultValue A function that provides a default value in case of failure.
      * @param onMapExceptionToState A function to map exceptions to the state.
+     * @param showLoadingState A boolean indicating if the loading state should be shown (default is true).
      * @return The result of the use case execution.
      */
     protected suspend fun <RESULT, UC : BrownieUseCase<RESULT>> executeUseCase(
         useCase: UC,
         onGetDefaultValue: () -> RESULT,
         onMapExceptionToState: ((Exception, STATE) -> STATE)? = null,
+        showLoadingState: Boolean = true
     ): RESULT {
-        onLoading()
+        if (showLoadingState) {
+            onLoading()
+        }
         return try {
             useCase.invoke(scope = viewModelScope)
         } catch (ex: Exception) {
             onErrorOccurred(ex, onMapExceptionToState)
             onGetDefaultValue()
         } finally {
-            onIdle()
+            if (showLoadingState) {
+                onIdle()
+            }
         }
     }
 
@@ -116,18 +122,24 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @param onSuccess A callback function for successful execution.
      * @param onFailed A callback function for failed execution.
      * @param onMapExceptionToState A function to map exceptions to the state.
+     * @param showLoadingState A boolean indicating if the loading state should be shown (default is true).
      */
     protected fun <RESULT, UC : BrownieUseCase<RESULT>> executeUseCase(
         useCase: UC,
         onSuccess: (RESULT) -> Unit = {},
         onFailed: () -> Unit = {},
-        onMapExceptionToState: ((Exception, STATE) -> STATE)? = null
+        onMapExceptionToState: ((Exception, STATE) -> STATE)? = null,
+        showLoadingState: Boolean = true
     ) {
-        onLoading()
+        if (showLoadingState) {
+            onLoading()
+        }
         useCase.invoke(
             scope = viewModelScope,
             onSuccess = {
-                onIdle()
+                if (showLoadingState) {
+                    onIdle()
+                }
                 onSuccess(it)
             },
             onError = {
@@ -144,15 +156,19 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @param params The parameters for the use case.
      * @param onMapExceptionToState A function to map exceptions to the state.
      * @param onGetDefaultValue A function that provides a default value in case of failure.
+     * @param showLoadingState A boolean indicating if the loading state should be shown (default is true).
      * @return The result of the use case execution.
      */
     protected suspend fun <PARAMS, RESULT, UC : BrownieUseCaseWithParams<PARAMS, RESULT>> executeUseCaseWithParams(
         useCase: UC,
         params: PARAMS,
         onMapExceptionToState: ((Exception, STATE) -> STATE)? = null,
-        onGetDefaultValue: () -> RESULT
+        onGetDefaultValue: () -> RESULT,
+        showLoadingState: Boolean = true
     ): RESULT {
-        onLoading()
+        if (showLoadingState) {
+            onLoading()
+        }
         return try {
             useCase.invoke(
                 scope = viewModelScope,
@@ -162,7 +178,9 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
             onErrorOccurred(ex, onMapExceptionToState)
             onGetDefaultValue()
         } finally {
-            onIdle()
+            if (showLoadingState) {
+                onIdle()
+            }
         }
     }
 
@@ -174,20 +192,26 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
      * @param onSuccess A callback function to be invoked upon successful execution with the result.
      * @param onFailed A callback function to be invoked upon failed execution.
      * @param onMapExceptionToState A function to map exceptions to the state.
+     * @param showLoadingState A boolean indicating if the loading state should be shown (default is true).
      */
     protected fun <PARAMS, RESULT, UC : BrownieUseCaseWithParams<PARAMS, RESULT>> executeUseCaseWithParams(
         useCase: UC,
         params: PARAMS,
         onSuccess: (RESULT) -> Unit = {},
         onFailed: () -> Unit = {},
-        onMapExceptionToState: ((Exception, STATE) -> STATE)? = null
+        onMapExceptionToState: ((Exception, STATE) -> STATE)? = null,
+        showLoadingState: Boolean = true
     ) {
-        onLoading()
+        if (showLoadingState) {
+            onLoading()
+        }
         useCase.invoke(
             scope = viewModelScope,
             params = params,
             onSuccess = {
-                onIdle()
+                if (showLoadingState) {
+                    onIdle()
+                }
                 onSuccess(it)
             },
             onError = {
