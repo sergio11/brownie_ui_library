@@ -71,6 +71,20 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
     }
 
     /**
+     * Executes a callback function on the current UI state.
+     *
+     * This method allows you to perform operations on the current state of the UI by providing a lambda function
+     * that will be executed in the context of the current `uiState`. The `uiState` is accessed via the `value`
+     * property, and the callback is invoked on it.
+     *
+     * @param callback A lambda function that operates on the current `STATE`. This lambda is executed
+     * within the context of the current UI state, allowing modifications or actions to be taken based on the state.
+     */
+    protected fun doOnUiState(callback: STATE.() -> Unit) {
+        uiState.value.callback()
+    }
+
+    /**
      * Launches a side effect by emitting it to the SharedFlow.
      *
      * @param effect The side effect to be emitted.
