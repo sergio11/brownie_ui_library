@@ -1,18 +1,18 @@
 package com.dreamsoftware.brownie.theme
 
-import android.app.Activity
 import android.os.Build
+import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
-import androidx.core.view.ViewCompat
 
 @Composable
 fun BrownieTheme(
@@ -31,11 +31,34 @@ fun BrownieTheme(
         darkTheme -> darkColorScheme
         else -> lightColorScheme
     }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
-            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
+    val context = LocalContext.current
+    if(context is ComponentActivity) {
+        val statusBarLight = lightColorScheme.primary.toArgb()
+        val statusBarDark = darkColorScheme.primary.toArgb()
+        val isDarkMode = isSystemInDarkTheme()
+        DisposableEffect(isDarkMode) {
+            context.enableEdgeToEdge(
+                statusBarStyle = if (!isDarkMode) {
+                    SystemBarStyle.light(
+                        statusBarLight,
+                        statusBarDark
+                    )
+                } else {
+                    SystemBarStyle.dark(
+                        statusBarDark
+                    )
+                },
+                navigationBarStyle = if(!isDarkMode){
+                    SystemBarStyle.light(
+                        lightColorScheme.primary.toArgb(),
+                        lightColorScheme.secondary.toArgb()
+                    )
+                } else {
+                    SystemBarStyle.dark(darkColorScheme.primary.toArgb())
+                }
+            )
+
+            onDispose { }
         }
     }
     MaterialTheme(
