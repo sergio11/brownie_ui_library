@@ -18,4 +18,6 @@ class BrownieEventBus {
     }
 }
 
-interface IBrownieAppEvent
+interface IBrownieAppEvent {
+    data class NetworkConnectivityStateChanged(val lastState: Boolean, val newState: Boolean): IBrownieAppEvent
+}

@@ -56,7 +56,7 @@ publishing {
             run {
                 groupId = "com.dreamsoftware.libraries"
                 artifactId = "brownie-ui"
-                version = "0.0.47"
+                version = "0.0.49"
                 artifact("$buildDir/outputs/aar/app-release.aar")
             }
         }
