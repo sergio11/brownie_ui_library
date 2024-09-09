@@ -47,7 +47,7 @@ fun BrownieScreenContent(
     onErrorMessageCleared: () -> Unit = {},
     infoMessage: String? = null,
     onInfoMessageCleared: () -> Unit = {},
-    enableContentWindowInsets: Boolean = true,
+    enableContentWindowInsets: Boolean = false,
     backgroundLayerColor: Color = MaterialTheme.colorScheme.primary.copy(0.4f),
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     drawBottomBarOverContent: Boolean = false,

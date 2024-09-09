@@ -257,6 +257,7 @@ private fun CommonDetailTitle(
         titleText = title.orEmpty(),
         textColor = MaterialTheme.colorScheme.onPrimary,
         type = BrownieTextTypeEnum.HEADLINE_LARGE,
+        singleLine = true,
         modifier = Modifier
             .graphicsLayer {
                 val collapseRange: Float = (headerHeightPx - toolbarHeightPx)
