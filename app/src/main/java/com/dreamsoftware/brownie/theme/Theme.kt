@@ -39,9 +39,8 @@ fun BrownieTheme(
         DisposableEffect(isDarkMode) {
             context.enableEdgeToEdge(
                 statusBarStyle = if (!isDarkMode) {
-                    SystemBarStyle.light(
-                        statusBarLight,
-                        statusBarDark
+                    SystemBarStyle.dark(
+                        statusBarLight
                     )
                 } else {
                     SystemBarStyle.dark(

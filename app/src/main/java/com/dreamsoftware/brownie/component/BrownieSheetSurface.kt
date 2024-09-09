@@ -29,8 +29,7 @@ fun BrownieSheetSurface(
 ) {
     Surface(
         modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(),
+            .fillMaxSize(),
         shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
         color = surfaceColor
     ) {

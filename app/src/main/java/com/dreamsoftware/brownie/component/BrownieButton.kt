@@ -44,6 +44,8 @@ fun  BrownieButton(
     type: BrownieButtonTypeEnum = BrownieButtonTypeEnum.MEDIUM,
     style: BrownieButtonStyleTypeEnum = BrownieButtonStyleTypeEnum.NORMAL,
     enableBorder: Boolean = true,
+    borderColor: Color? = null,
+    textColor: Color? = null,
     buttonShape: Shape = RoundedCornerShape(percent = 50),
     text: String? = null,
     textRes: Int? = null,
@@ -75,7 +77,7 @@ fun  BrownieButton(
                             0.dp
                         },
                         color = if(enableBorder){
-                            when(style) {
+                            borderColor ?: when(style) {
                                 BrownieButtonStyleTypeEnum.NORMAL -> primary
                                 BrownieButtonStyleTypeEnum.INVERSE -> secondary
                                 BrownieButtonStyleTypeEnum.TRANSPARENT -> surface
@@ -130,7 +132,7 @@ fun  BrownieButton(
                     },
                     titleText = text,
                     titleRes = textRes,
-                    textColor = when(style) {
+                    textColor = textColor ?: when(style) {
                         BrownieButtonStyleTypeEnum.NORMAL -> onPrimaryContainer
                         BrownieButtonStyleTypeEnum.INVERSE -> onSecondaryContainer
                         BrownieButtonStyleTypeEnum.TRANSPARENT -> surface

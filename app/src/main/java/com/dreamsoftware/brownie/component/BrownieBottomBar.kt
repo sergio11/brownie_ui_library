@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.ui.graphics.Color
 
 data class BottomNavBarItem(
@@ -23,11 +25,13 @@ data class BottomNavBarItem(
     @StringRes val titleRes: Int? = null,
     val alwaysShowLabels: Boolean = true
 )
+
 @SuppressLint("RestrictedApi")
 @Composable
 fun BrownieBottomBar(
     items: List<BottomNavBarItem>,
     currentItemRouteSelected: String?,
+    enableWindowInsets: Boolean = true,
     ambientColor: Color = MaterialTheme.colorScheme.primary,
     spotColor: Color = MaterialTheme.colorScheme.onPrimary,
     containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
@@ -49,6 +53,11 @@ fun BrownieBottomBar(
                 )
         ) {
             NavigationBar(
+                windowInsets = if(enableWindowInsets) {
+                    NavigationBarDefaults.windowInsets
+                } else {
+                    WindowInsets(0)
+                },
                 containerColor = containerColor,
                 contentColor = contentColor
             ) {
