@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,12 +17,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -44,8 +47,10 @@ fun BrownieScreenContent(
     onErrorMessageCleared: () -> Unit = {},
     infoMessage: String? = null,
     onInfoMessageCleared: () -> Unit = {},
+    enableContentWindowInsets: Boolean = true,
     backgroundLayerColor: Color = MaterialTheme.colorScheme.primary.copy(0.4f),
     floatingActionButtonPosition: FabPosition = FabPosition.End,
+    drawBottomBarOverContent: Boolean = false,
     onBuildFloatingActionButton: @Composable (() -> Unit)? = null,
     onBuildBottomBar: @Composable (() -> Unit)? = null,
     onBuildCustomTopBar: @Composable (() -> Unit)? = null,
@@ -68,7 +73,9 @@ fun BrownieScreenContent(
     }
     Scaffold(
         bottomBar = {
-            onBuildBottomBar?.invoke()
+            if(!drawBottomBarOverContent) {
+                onBuildBottomBar?.invoke()
+            }
         },
         floatingActionButton = {
             onBuildFloatingActionButton?.invoke()
@@ -109,6 +116,11 @@ fun BrownieScreenContent(
                 )
             }
         },
+        contentWindowInsets = if(enableContentWindowInsets) {
+            ScaffoldDefaults.contentWindowInsets
+        } else {
+            WindowInsets(0)
+        },
         containerColor = screenContainerColor
     ) { paddingValues ->
         Box(modifier = Modifier
@@ -120,7 +132,9 @@ fun BrownieScreenContent(
                 } else {
                     onBuildBackgroundContent?.invoke(this)
                 }
-                Box(modifier = Modifier.fillMaxSize().background(backgroundLayerColor))
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .background(backgroundLayerColor))
             }
             Column(
                 modifier = if (enableVerticalScroll) {
@@ -132,6 +146,17 @@ fun BrownieScreenContent(
                 }
             ) {
                 screenContent()
+            }
+            if(drawBottomBarOverContent) {
+                onBuildBottomBar?.let { bottomBar ->
+                    Box(modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.Transparent)
+                        .align(Alignment.BottomCenter)
+                    ) {
+                        bottomBar.invoke()
+                    }
+                }
             }
         }
     }

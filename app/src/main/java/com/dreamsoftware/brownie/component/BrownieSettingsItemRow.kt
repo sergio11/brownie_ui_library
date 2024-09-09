@@ -28,7 +28,7 @@ abstract class BrownieSettingsItemVO(
 )
 
 abstract class BrownieSettingsItemSwitchVO(
-    val isEnabled: Boolean,
+    open val isEnabled: Boolean,
     override val textRes: Int,
     override val icon: Int,
     override val isDanger: Boolean

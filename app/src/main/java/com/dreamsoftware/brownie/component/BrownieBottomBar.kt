@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Color
 
 data class BottomNavBarItem(
@@ -37,6 +38,7 @@ fun BrownieBottomBar(
     with(MaterialTheme.colorScheme) {
         Box(
             modifier = Modifier
+                .background(Color.Transparent)
                 .padding(start = 8.dp, end = 8.dp, bottom = 10.dp)
                 .shadow(
                     elevation = 8.dp,
