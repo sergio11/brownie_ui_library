@@ -4,6 +4,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.compose.compiler)
     id("maven-publish")
 }
 
@@ -56,7 +57,7 @@ publishing {
             run {
                 groupId = "com.dreamsoftware.libraries"
                 artifactId = "brownie-ui"
-                version = "0.0.59"
+                version = "0.0.61"
                 artifact("$buildDir/outputs/aar/app-release.aar")
             }
         }
@@ -84,14 +85,11 @@ dependencies {
     // AndroidX Activity Compose for using Compose in AndroidX activities
     implementation(libs.androidx.activity.compose)
 
-    // Material Icons Extended for including a wide range of Material Design icons
-    api(libs.material.icons.extended)
-
     // Compose BOM (Bill of Materials) for managing the versions of Compose libraries
     implementation(platform(libs.compose.bom))
-
-    // AndroidX Compose BOM for managing versions of Compose libraries specific to AndroidX
-    implementation(libs.bundles.androidx.compose.bom)
+    implementation(libs.androidx.compose.material3)  // Material 3 components for Compose UI.
+    implementation(libs.androidx.compose.material)  // Material Design components for Compose.
+    implementation(libs.material.icons.extended)  // Extended set of Material Design icons for Compose.
 
     // ViewModel Compose for integrating ViewModel with Compose
     implementation(libs.androidx.lifecycle.viewModelCompose)

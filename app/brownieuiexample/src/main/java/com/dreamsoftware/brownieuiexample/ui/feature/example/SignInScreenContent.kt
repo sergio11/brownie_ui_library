@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dreamsoftware.brownie.component.BrownieButton
 import com.dreamsoftware.brownie.component.BrownieButtonTypeEnum
@@ -75,18 +74,5 @@ fun SignInScreenContent(
             )
             Spacer(modifier = Modifier.padding(bottom = 10.dp))
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SignInScreenContentPreview() {
-    BrownieTheme {
-        SignInScreenContent(
-            uiState = SignInUiState(),
-            onEmailChanged = {},
-            onPasswordChanged = {},
-            onSignIn = {}
-        )
     }
 }
