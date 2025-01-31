@@ -26,6 +26,7 @@ data class BrownieDropdownMenuButtonItem(
 
 @Composable
 fun BrownieDropdownMenuButton(
+    modifier: Modifier = Modifier,
     @DrawableRes iconRes: Int,
     isEnabled: Boolean = true,
     containerSize: Dp = 52.dp,
@@ -39,7 +40,7 @@ fun BrownieDropdownMenuButton(
     onMenuItemClicked: (BrownieDropdownMenuButtonItem) -> Unit = {}
 ) {
     var expanded by remember { mutableStateOf(false) }
-    Box {
+    Box(modifier = modifier) {
         BrownieIconButton(
             iconRes = iconRes,
             isEnabled = isEnabled,
