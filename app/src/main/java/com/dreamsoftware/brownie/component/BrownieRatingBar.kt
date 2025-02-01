@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.StarHalf
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
@@ -18,10 +17,10 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BrownieRatingBar(
-    rating: Float,
-    onRatingChanged: (Float) -> Unit,
+    rating: Int,
     maxStars: Int = 5,
-    starSize: Dp = 40.dp
+    starSize: Dp = 40.dp,
+    onRatingChanged: ((Int) -> Unit)? = null
 ) {
     Row(
         modifier = Modifier.padding(8.dp),
@@ -30,7 +29,6 @@ fun BrownieRatingBar(
         for (i in 1..maxStars) {
             val imageVector = when {
                 i <= rating -> Icons.Filled.Star
-                i - 0.5f <= rating -> Icons.AutoMirrored.Filled.StarHalf
                 else -> Icons.Outlined.Star
             }
             Icon(
@@ -38,7 +36,7 @@ fun BrownieRatingBar(
                 contentDescription = "Star rating",
                 modifier = Modifier
                     .size(starSize)
-                    .clickable { onRatingChanged(i.toFloat()) },
+                    .clickable { onRatingChanged?.invoke(i) },
                 tint = if (i <= rating) Color.Yellow else Color.Gray
             )
         }
