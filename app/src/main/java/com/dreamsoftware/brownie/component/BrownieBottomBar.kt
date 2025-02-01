@@ -16,14 +16,21 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.NavigationBarDefaults
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 
 data class BottomNavBarItem(
     val route: String,
     @DrawableRes val icon: Int,
     @StringRes val titleRes: Int? = null,
-    val alwaysShowLabels: Boolean = true
+    val alwaysShowLabels: Boolean = true,
+    val isDock: Boolean = false
 )
 
 @SuppressLint("RestrictedApi")
@@ -32,6 +39,7 @@ fun BrownieBottomBar(
     items: List<BottomNavBarItem>,
     currentItemRouteSelected: String?,
     enableWindowInsets: Boolean = true,
+    clipContent: Boolean = true,
     ambientColor: Color = MaterialTheme.colorScheme.primary,
     spotColor: Color = MaterialTheme.colorScheme.onPrimary,
     containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
@@ -49,10 +57,14 @@ fun BrownieBottomBar(
                     shape = RoundedCornerShape(16.dp),
                     ambientColor = ambientColor,
                     spotColor = spotColor,
-                    clip = true
+                    clip = clipContent
                 )
         ) {
             NavigationBar(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(containerColor)
+                    .padding(4.dp),
                 windowInsets = if(enableWindowInsets) {
                     NavigationBarDefaults.windowInsets
                 } else {
@@ -66,29 +78,51 @@ fun BrownieBottomBar(
                         selected = currentItemRouteSelected == destination.route,
                         onClick = { onItemClicked(destination) },
                         icon = {
-                            BrownieImageIcon(
-                                type = BrownieType.ICON,
-                                iconRes = destination.icon,
-                                tintColor = if (currentItemRouteSelected == destination.route) {
-                                    iconColorSelected
-                                } else {
-                                    onPrimary
-                                }
-                            )
+                            if (!destination.isDock) {
+                                BrownieImageIcon(
+                                    type = BrownieType.ICON,
+                                    iconRes = destination.icon,
+                                    tintColor = if (currentItemRouteSelected == destination.route) {
+                                        iconColorSelected
+                                    } else {
+                                        onPrimary
+                                    }
+                                )
+                            }
                         },
                         label = {
-                            destination.titleRes?.let {
-                                BrownieText(
-                                    type = BrownieTextTypeEnum.LABEL_SMALL,
-                                    titleRes = it,
-                                    textColor = onPrimary
-                                )
+                            if (!destination.isDock) {
+                                destination.titleRes?.let {
+                                    BrownieText(
+                                        type = BrownieTextTypeEnum.LABEL_SMALL,
+                                        titleRes = it,
+                                        textColor = onPrimary
+                                    )
+                                }
                             }
                         },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = onPrimary,
                             indicatorColor = onPrimary
                         )
+                    )
+                }
+            }
+
+            items.find { it.isDock }?.let { item ->
+                FloatingActionButton(
+                    onClick = { onItemClicked(item) },
+                    modifier = Modifier
+                        .size(64.dp)
+                        .offset(y = -32.dp)
+                        .shadow(12.dp, CircleShape)
+                        .align(Alignment.TopCenter),
+                    containerColor = onPrimary,
+                    contentColor = primary
+                ) {
+                    BrownieImageIcon(
+                        type = BrownieType.ICON,
+                        iconRes = item.icon
                     )
                 }
             }
