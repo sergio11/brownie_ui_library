@@ -14,7 +14,7 @@ androidx-activity-compose = "1.10.0"          # Activity Compose
 androidx-lifecycle = "2.8.7"                  # AndroidX Lifecycle
 lifecycle-runtime-compose = "2.8.7"           # Lifecycle runtime for Compose
 androidx-corektx = "1.15.0"                   # AndroidX Core KTX
-compose_bom = "2025.01.01"                    # Compose BOM (Bill of Materials)
+compose_bom = "2025.02.00"                    # Compose BOM (Bill of Materials)
 desugar-jdk-libs = "2.1.4"                    # Desugar JDK for API compatibility
 junit = "4.13.2"                              # JUnit version
 junitVersion = "1.2.1"                        # AndroidX JUnit version
@@ -24,7 +24,7 @@ hilt = "2.49"                                 # Hilt for dependency injection
 androidxHiltNavigationCompose = "1.2.0"       # Hilt for navigation in Compose
 brownie-ui = "0.0.64"                         # Custom UI (Brownie UI)
 timber = "5.0.1"                              # Timber for logging
-material-icons-extended = "1.7.7" # Extended Material Design icons.
+material-icons-extended = "1.7.8" # Extended Material Design icons.
 
 [libraries]
 # Common AndroidX and other libraries dependencies
