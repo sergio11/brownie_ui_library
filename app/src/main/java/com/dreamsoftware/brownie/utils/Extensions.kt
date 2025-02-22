@@ -6,6 +6,11 @@ import com.dreamsoftware.brownie.component.BrownieTabUi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import android.provider.Settings
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.DrawStyle
+import androidx.compose.ui.graphics.drawscope.Fill
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -48,3 +53,23 @@ fun String.toDate(pattern: String = "yyyy-MM-dd"): Date? =
         val formatter = SimpleDateFormat(pattern, Locale.getDefault())
         formatter.parse(this)
     }.getOrNull()
+
+
+fun Modifier.drawIndicators(vararg indicators: IndicatorConfig): Modifier = this.drawBehind {
+    indicators.forEach { indicator ->
+        if (indicator.shouldDraw) {
+            drawCircle(
+                color = indicator.color,
+                radius = size.maxDimension * indicator.radiusFraction,
+                style = indicator.style
+            )
+        }
+    }
+}
+
+data class IndicatorConfig(
+    val shouldDraw: Boolean,
+    val color: Color,
+    val radiusFraction: Float = 0.5f,
+    val style: DrawStyle = Fill
+)
