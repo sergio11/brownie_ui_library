@@ -238,7 +238,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
     /**
      * Updates the state to represent loading state.
      */
-    private fun onLoading() {
+    protected fun onLoading() {
         updateState {
             it.copyState(isLoading = true, errorMessage = null)
         }
@@ -247,7 +247,7 @@ abstract class BrownieViewModel<STATE : UiState<STATE>, EFFECT : SideEffect> : V
     /**
      * Updates the state to represent idle state.
      */
-    private fun onIdle() {
+    protected fun onIdle() {
         updateState {
             it.copyState(isLoading = false)
         }
