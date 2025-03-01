@@ -10,7 +10,7 @@ coilCompose = "2.5.0"                         # Coil Compose version for image h
 
 # AndroidX dependencies and other libraries
 androidLibrary = "8.2.1"                      # AndroidX library version for Library projects
-androidx-activity-compose = "1.10.0"          # Activity Compose
+androidx-activity-compose = "1.10.1"          # Activity Compose
 androidx-lifecycle = "2.8.7"                  # AndroidX Lifecycle
 lifecycle-runtime-compose = "2.8.7"           # Lifecycle runtime for Compose
 androidx-corektx = "1.15.0"                   # AndroidX Core KTX

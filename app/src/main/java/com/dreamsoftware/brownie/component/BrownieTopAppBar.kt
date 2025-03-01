@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -34,7 +35,15 @@ fun BrownieTopAppBar(
             BrownieText(
                 type = BrownieTextTypeEnum.HEADLINE_SMALL,
                 modifier = if (centerTitle) {
-                    Modifier.fillMaxWidth()
+                    Modifier
+                        .fillMaxWidth()
+                        .offset(
+                            x = if (navigationAction != null) {
+                                (-25).dp
+                            } else {
+                                0.dp
+                            }
+                        )
                 } else {
                     Modifier
                 },
