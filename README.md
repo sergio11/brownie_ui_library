@@ -2,6 +2,9 @@
 
 Brownie is a 🌟 Jetpack Compose library module that provides a set of pre-defined components to accelerate the development of Android interfaces and applications. It is designed to help developers apply best practices in screen state management and utilize the most effective design patterns in their projects.
 
+## ⚠️ Disclaimer  
+Brownie is an **open-source Jetpack Compose UI library** developed **exclusively for learning purposes**. This project serves as an educational resource to explore **Jetpack Compose, UI design patterns, and state management in Android development**.  
+
 <p align="center">
   <img src="https://img.shields.io/badge/Android%20Studio-3DDC84.svg?style=for-the-badge&logo=android-studio&logoColor=white" />
   <img src="https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white" />
@@ -172,6 +175,10 @@ brownie-ui = { module = "com.dreamsoftware.libraries:brownie-ui", version.ref = 
 ```kotin
 implementation(libs.brownie.ui)
 ```
+
+## ⚠️ Disclaimer  
+Brownie is an **open-source Jetpack Compose UI library** developed **exclusively for learning purposes**. This project serves as an educational resource to explore **Jetpack Compose, UI design patterns, and state management in Android development**.  
+
 
 ## Contribution
 Contributions to Brownie UI library are highly encouraged! If you're interested in adding new features, resolving bugs, or enhancing the project's functionality, please feel free to submit pull requests.
